@@ -43,7 +43,7 @@ public class ControllerTest {
     public void testNewsPage() throws Exception{
         mockMvc.perform(get("/show-news-contents"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("newsdbcontents"));
+                .andExpect(view().name("news-db-contents"));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class ControllerTest {
     public void testMoviesPage() throws Exception{
         mockMvc.perform(get("/show-movies-contents"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("moviesdbcontents"));
+                .andExpect(view().name("movies-db-contents"));
     }
 
     @Test

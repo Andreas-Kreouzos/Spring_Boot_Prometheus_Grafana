@@ -35,13 +35,13 @@ public class MainController {
     @GetMapping("/show-news-contents")
     public String showAllRates(HttpServletRequest request){
         request.setAttribute("rates", mainService.showAllRates());
-        return "newsdbcontents";
+        return "news-db-contents";
     }
 
     //Method to handle the HTTP request for showing DB contents of Movies Stats
     @GetMapping("/show-movies-contents")
     public String showAllMovies(HttpServletRequest request){
         request.setAttribute("movies", mainService.showAllMovies());
-        return "moviesdbcontents";
+        return "movies-db-contents";
     }
 }
