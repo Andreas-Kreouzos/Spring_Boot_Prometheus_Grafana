@@ -16,7 +16,7 @@
 <body>
 
 <ul>
-    <li><a href="http://localhost:8080/">Home</a></li>
+    <li><a href="https://localhost:8443/">Home</a></li>
     <li><a href="/show-moviescontents">Movies Contents</a></li>
     <li><a href="https://github.com/Andreas-Kreouzos" target="_blank">Github</a></li>
 </ul>
@@ -48,7 +48,7 @@
                         <td>
                             <a
                                     href="#"
-                                    th:href="@{{news_link}(news_link=${rate.news_link})}"
+                                    th:href="@{${rate.news_link}}"
                                     th:text="${rate.HEADLINE}">
                             </a>
                         </td>
@@ -57,7 +57,6 @@
             </table>
         </div>
     </div>
-
 
 </body>
 </html>

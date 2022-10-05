@@ -29,11 +29,23 @@ public class NewsHTMLController {
         return "welcome";
     }
 
+    @GetMapping("login")
+    public String getLoginView() {
+        return "login";
+    }
+
     //Method to handle the HTTP request for showing DB contents
     @GetMapping("/show-newscontents")
     public String showAllRates(HttpServletRequest request){
         request.setAttribute("rates", newsService.showAllRates());
         return "newsdbcontents";
     }
+
+/*    @RequestMapping(value = "/redirect", method = RequestMethod.GET)
+    public ModelAndView method(
+            @RequestParam(value = "news_link", required = false) String news_link, Model model) {
+        model.addAttribute("news_link",news_link);
+        return new ModelAndView("redirect:" + news_link);
+    }*/
 
 }
