@@ -21,7 +21,7 @@ public class WelcomeMoviesControllerTest {
     @Test
     public void testHomePage() throws Exception{
         mockMvc.perform(get("/"))
-                .andExpect(status().isOk())
+                .andExpect(status().is(302))
                 .andExpect(view().name("welcome"))
                 .andExpect(model().attribute("message", equalTo("User")))
                 .andExpect(content().string(containsString("Hello, User")));
