@@ -1,7 +1,5 @@
 package com.andrekreou.iot.auth;
 
-import com.andrekreou.iot.registration.RegistrationRequest;
-import com.andrekreou.iot.registration.RegistrationService;
 import com.andrekreou.iot.registration.token.ConfirmationToken;
 import com.andrekreou.iot.registration.token.ConfirmationTokenRepository;
 import com.andrekreou.iot.registration.token.ConfirmationTokenService;
@@ -25,6 +23,7 @@ public class ApplicationUserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
+    private final ConfirmationTokenRepository confirmationTokenRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email)
@@ -35,11 +34,11 @@ public class ApplicationUserService implements UserDetailsService {
                                 String.format(USER_NOT_FOUND_MSG, email))));
     }
 
-    public String signUpUser(ApplicationUser applicationUser){
+    public String signUpUser(ApplicationUser applicationUser, ConfirmationToken confirmationToken) {
         boolean mailExists = isMailExists(applicationUser);
 
-        if (mailExists) {
-           throw new IllegalStateException("email already taken");
+        if (mailExists && (confirmationToken.getConfirmedAt() != null)) {
+            throw new IllegalStateException("email already taken");
         }
 
         String encodedPassword = bCryptPasswordEncoder.encode(applicationUser.getPassword());
@@ -50,10 +49,10 @@ public class ApplicationUserService implements UserDetailsService {
 
         String token = UUID.randomUUID().toString();
 
-        ConfirmationToken confirmationToken = new ConfirmationToken(
+        confirmationToken = new ConfirmationToken(
                 token,
                 LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(15),
+                LocalDateTime.now().plusMinutes(1),
                 applicationUser
         );
 
