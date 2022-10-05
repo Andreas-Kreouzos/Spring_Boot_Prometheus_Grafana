@@ -33,6 +33,7 @@ public class ApplicationSecurityConfig {
                     .and()
                 .formLogin()
                     .loginPage("/login")
+                    .usernameParameter("email")
                     .permitAll()
                     .defaultSuccessUrl("/",true)
                 .and()
@@ -59,5 +60,4 @@ public class ApplicationSecurityConfig {
         provider.setUserDetailsService(applicationUserService);
         return provider;
     }
-
 }

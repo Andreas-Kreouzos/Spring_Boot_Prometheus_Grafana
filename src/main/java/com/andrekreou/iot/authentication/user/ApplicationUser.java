@@ -68,7 +68,7 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return firstName;
     }
 
     public String getFirstName() {
