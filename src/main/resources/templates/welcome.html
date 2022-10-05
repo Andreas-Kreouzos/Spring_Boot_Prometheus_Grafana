@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/styles/main.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/welcome.css}"/>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
     <style>
@@ -50,7 +51,16 @@
             <span th:text="'Welcome to our application ' + ${name}"></span>
         </h2>
     </div>
+    
+    <div class="container_image">
+        <img src="/image/IMDbLogo.png" width="210" height="150" alt="IMDb Logo"/><br/>
+        <a href="/show-moviescontents">Movies Statistics App</a>
+    </div>
 
+    <div class="container_image">
+        <img src="/image/BitCoin.jpeg" width="210" height="150" alt="BitCoin Logo"/><br/>
+        <a href="/show-news-contents">Cryptocurrency News App</a>
+    </div>
 </main>
 
 
