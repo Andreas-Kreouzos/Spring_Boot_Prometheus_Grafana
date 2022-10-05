@@ -2,10 +2,8 @@ package com.andrekreou.iot.bitpay.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 //This class is responsible for mapping the key variables from
 //the JSON array to be imported. The name keys from JSON have
@@ -18,7 +16,7 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BitPayRates {
     @Id
-    @SequenceGenerator(
+/*    @SequenceGenerator(
             name = "bitpay_sequence",
             sequenceName = "bitpay_sequence",
             allocationSize = 1
@@ -26,7 +24,7 @@ public class BitPayRates {
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "bitpay_sequence"
-    )
+    )*/
     private Integer news_id;
     private String news_provider_name;
     @JsonProperty("headline")
@@ -35,24 +33,19 @@ public class BitPayRates {
     private String related_image;
 
 
-    @CreationTimestamp
-    private java.time.LocalDateTime timestamp;
-
-    protected BitPayRates() {
+    public BitPayRates() {
     }
 
     public BitPayRates(Integer news_id,
                        String news_provider_name,
                        String HEADLINE,
                        String news_link,
-                       String related_image,
-                       LocalDateTime timestamp) {
+                       String related_image) {
         this.news_id = news_id;
         this.news_provider_name = news_provider_name;
         this.HEADLINE = HEADLINE;
         this.news_link = news_link;
         this.related_image = related_image;
-        this.timestamp = timestamp;
     }
 
     public Integer getNews_id() {
@@ -97,14 +90,6 @@ public class BitPayRates {
         this.related_image = related_image;
     }
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
-
     @Override
     public String toString() {
         return "BitPayRates{" +
@@ -113,7 +98,6 @@ public class BitPayRates {
                 ", HEADLINE='" + HEADLINE + '\'' +
                 ", news_link='" + news_link + '\'' +
                 ", related_image='" + related_image + '\'' +
-                ", timestamp=" + timestamp +
                 '}';
     }
 }

@@ -45,7 +45,7 @@ public class BitPayRatesConfig {
             ObjectMapper mapper = JsonMapper
                     .builder()
                     .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES).build();
-            
+
             JsonNode actualObj = mapper.readTree(postEntity.getBody());
             JsonNode node = actualObj.get("data");
             if (node.isArray()) {

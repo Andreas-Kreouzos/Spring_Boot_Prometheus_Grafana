@@ -1,18 +1,25 @@
 package com.andrekreou.iot.bitpay.controller;
 
+import com.andrekreou.iot.bitpay.model.BitPayRates;
+import com.andrekreou.iot.bitpay.repository.BitPayRatesRepo;
 import com.andrekreou.iot.bitpay.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class WelcomeController {
 
     Service service;
+
+    BitPayRatesRepo bitPayRatesRepo;
 
     @Autowired
     public WelcomeController(Service service) {
@@ -26,7 +33,6 @@ public class WelcomeController {
     @GetMapping("/")
     public String main(Model model){
         model.addAttribute("message", message);
-
         return "welcome";
     }
 
@@ -36,4 +42,22 @@ public class WelcomeController {
         request.setAttribute("rates", service.showAllRates());
         return "databasecontents";
     }
+
+/*    @RequestMapping(value = "rate", method = RequestMethod.GET)
+    public ModelAndView rates() {
+        ModelAndView mav = new ModelAndView("rate/list");
+        BitPayRates bitPayRates = new BitPayRates();
+        mav.addObject("rates", bitPayRates);
+        return mav;
+    }*/
+
+/*    @ModelAttribute("rates")
+    public List<BitPayRates> rates() {
+        return service.showAllRates();
+    }*/
+
+/*    @RequestMapping("/${rate.news_link}")
+    public String redirect() {
+        return "redirect:/";
+    }*/
 }
