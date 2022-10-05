@@ -11,12 +11,10 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-//The service layer class for business logic implementation
 @Service
 @Transactional
 public class MainService {
 
-    //Dependency injection to connect with Repository layer
     private final CryptoNewsRepo cryptoNewsRepo;
     private final MoviesRepo moviesRepo;
 
@@ -27,17 +25,30 @@ public class MainService {
         this.moviesRepo = moviesRepo;
     }
 
-    //Method to display all contents of database
     public List<CryptoNews> showAllRates(){
-        List<CryptoNews> rates = new ArrayList<>();
-        rates.addAll(cryptoNewsRepo.findAll());
-        return rates;
+        return new ArrayList<>(cryptoNewsRepo.findAll());
     }
 
-    //Method to display all contents of database
     public List<Movies> showAllMovies(){
-        List<Movies> movies = new ArrayList<>();
-        movies.addAll(moviesRepo.findAll());
-        return movies;
+        return new ArrayList<>(moviesRepo.findAll());
+    }
+
+    public CryptoNews saveOneCryptoItem(CryptoNews cryptoNews){
+        CryptoNews saveCrypto = CryptoNews.builder()
+                .news_provider_name(cryptoNews.getNews_provider_name())
+                .HEADLINE(cryptoNews.getHEADLINE())
+                .news_link(cryptoNews.getNews_link())
+                .related_image(cryptoNews.getRelated_image())
+                .build();
+        return this.cryptoNewsRepo.save(saveCrypto);
+    }
+
+    public Movies saveOneMovieItem(Movies movies){
+        Movies saveMovie = Movies.builder()
+                .title(movies.getTitle())
+                .worldwideLifetimeGross(movies.getWorldwideLifetimeGross())
+                .year(movies.getYear())
+                .build();
+        return this.moviesRepo.save(saveMovie);
     }
 }

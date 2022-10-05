@@ -1,19 +1,15 @@
 package com.andrekreou.iot.operations.movies.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//This class is responsible for mapping the key variables from
-//the JSON array to be imported. The name keys from JSON have
-//to be exactly the same as here, in order for data to be fetched.
-
-
-//Don't forget to apply Lombok, at the end of the project as appendix!!!
 @Entity
 @Table
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movies {
     @Id
@@ -26,10 +22,13 @@ public class Movies {
     public Movies() {
     }
 
-    public Movies(String id, String title, Long worldwideLifetimeGross, Integer year) {
+    public Movies(String id,
+                  String title,
+                  String worldwideLifetimeGross,
+                  Integer year) {
         this.id = id;
         this.title = title;
-        this.worldwideLifetimeGross = String.valueOf(worldwideLifetimeGross);
+        this.worldwideLifetimeGross = worldwideLifetimeGross;
         this.year = year;
     }
 

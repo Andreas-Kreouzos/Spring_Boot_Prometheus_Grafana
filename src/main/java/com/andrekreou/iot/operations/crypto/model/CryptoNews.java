@@ -2,15 +2,13 @@ package com.andrekreou.iot.operations.crypto.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 
 import javax.persistence.*;
 
-//This class is responsible for mapping the key variables from
-//the JSON array to be imported. The name keys from JSON have
-//to be exactly the same as here, in order for data to be fetched.
-
 @Entity
 @Table
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CryptoNews {
     @Id
@@ -81,7 +79,7 @@ public class CryptoNews {
 
     @Override
     public String toString() {
-        return "Movies{" +
+        return "CryptoNews{" +
                 "news_id=" + news_id +
                 ", news_provider_name='" + news_provider_name + '\'' +
                 ", HEADLINE='" + HEADLINE + '\'' +
