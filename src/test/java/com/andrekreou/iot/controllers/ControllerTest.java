@@ -56,6 +56,7 @@ public class ControllerTest {
     }
 
     @Test
+    @WithMockUser(username="admin",roles={"USER","ADMIN"})
     @DisplayName("Testing the Logout view of the application")
     public void testLogoutPage() throws Exception{
         mockMvc.perform(logout("/logout"));
