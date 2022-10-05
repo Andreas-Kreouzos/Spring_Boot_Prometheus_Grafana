@@ -1,6 +1,7 @@
 package com.andrekreou.iot.bitpay.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -26,10 +27,12 @@ public class BitPayRates {
             strategy = GenerationType.SEQUENCE,
             generator = "bitpay_sequence"
     )
-    private Integer id;
-    private String code;
-    private String name;
-    private Long rate;
+    private Integer news_id;
+    private String news_provider_name;
+    @JsonProperty("headline")
+    private String HEADLINE;
+    private String news_link;
+    private String related_image;
 
 
     @CreationTimestamp
@@ -38,11 +41,60 @@ public class BitPayRates {
     protected BitPayRates() {
     }
 
-    public BitPayRates(String code, String name, Long rate, LocalDateTime timestamp) {
-        this.code = code;
-        this.name = name;
-        this.rate = rate;
+    public BitPayRates(Integer news_id,
+                       String news_provider_name,
+                       String HEADLINE,
+                       String news_link,
+                       String related_image,
+                       LocalDateTime timestamp) {
+        this.news_id = news_id;
+        this.news_provider_name = news_provider_name;
+        this.HEADLINE = HEADLINE;
+        this.news_link = news_link;
+        this.related_image = related_image;
         this.timestamp = timestamp;
+    }
+
+    public Integer getNews_id() {
+        return news_id;
+    }
+
+    public void setNews_id(Integer news_id) {
+        this.news_id = news_id;
+    }
+
+    public String getNews_provider_name() {
+        return news_provider_name;
+    }
+
+    public void setNews_provider_name(String news_provider_name) {
+        this.news_provider_name = news_provider_name;
+    }
+
+    @JsonProperty("headline")
+    public String getHEADLINE() {
+        return HEADLINE;
+    }
+
+    @JsonProperty("headline")
+    public void setHEADLINE(String HEADLINE) {
+        this.HEADLINE = HEADLINE;
+    }
+
+    public String getNews_link() {
+        return news_link;
+    }
+
+    public void setNews_link(String news_link) {
+        this.news_link = news_link;
+    }
+
+    public String getRelated_image() {
+        return related_image;
+    }
+
+    public void setRelated_image(String related_image) {
+        this.related_image = related_image;
     }
 
     public LocalDateTime getTimestamp() {
@@ -53,45 +105,15 @@ public class BitPayRates {
         this.timestamp = timestamp;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getRate() {
-        return rate;
-    }
-
-    public void setRate(Long rate) {
-        this.rate = rate;
-    }
-
     @Override
     public String toString() {
         return "BitPayRates{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", rate=" + rate +
+                "news_id=" + news_id +
+                ", news_provider_name='" + news_provider_name + '\'' +
+                ", HEADLINE='" + HEADLINE + '\'' +
+                ", news_link='" + news_link + '\'' +
+                ", related_image='" + related_image + '\'' +
+                ", timestamp=" + timestamp +
                 '}';
     }
 }

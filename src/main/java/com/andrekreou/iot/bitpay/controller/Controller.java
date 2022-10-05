@@ -1,9 +1,8 @@
 package com.andrekreou.iot.bitpay.controller;
 
-import com.andrekreou.iot.bitpay.service.Service;
 import com.andrekreou.iot.bitpay.model.BitPayRates;
+import com.andrekreou.iot.bitpay.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
