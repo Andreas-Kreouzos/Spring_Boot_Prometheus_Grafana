@@ -1,6 +1,9 @@
 package com.andrekreou.iot.auth;
 
+import com.andrekreou.iot.registration.RegistrationRequest;
+import com.andrekreou.iot.registration.RegistrationService;
 import com.andrekreou.iot.registration.token.ConfirmationToken;
+import com.andrekreou.iot.registration.token.ConfirmationTokenRepository;
 import com.andrekreou.iot.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,12 +36,10 @@ public class ApplicationUserService implements UserDetailsService {
     }
 
     public String signUpUser(ApplicationUser applicationUser){
-        boolean userExists = userRepository
-                .findByEmail(applicationUser.getEmail()).
-                isPresent();
+        boolean mailExists = isMailExists(applicationUser);
 
-        if (userExists) {
-            throw new IllegalStateException("email already taken");
+        if (mailExists) {
+           throw new IllegalStateException("email already taken");
         }
 
         String encodedPassword = bCryptPasswordEncoder.encode(applicationUser.getPassword());
@@ -59,6 +60,10 @@ public class ApplicationUserService implements UserDetailsService {
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
         return token;
+    }
+
+    private boolean isMailExists(ApplicationUser applicationUser) {
+        return userRepository.findByEmail(applicationUser.getEmail()).isPresent();
     }
 
     public int enableApplicationUser(String email) {

@@ -35,7 +35,7 @@ public class NewsHTMLController {
     }
 
     //Method to handle the HTTP request for showing DB contents
-    @GetMapping("/show-newscontents")
+    @GetMapping("/show-news-contents")
     public String showAllRates(HttpServletRequest request){
         request.setAttribute("rates", newsService.showAllRates());
         return "newsdbcontents";

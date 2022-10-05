@@ -28,8 +28,8 @@ public class ApplicationSecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/v*/registration/**").permitAll()
-                    .antMatchers("/show-newscontents").hasRole(ADMIN.name())
+                    .antMatchers("/api/v*/registration/**","/register*","/login","/registration","/registration-complete").permitAll()
+                    //.antMatchers("/show-news-contents").hasRole(ADMIN.name())
                     .anyRequest()
                     .authenticated()
                     .and()
@@ -48,10 +48,6 @@ public class ApplicationSecurityConfig {
         return http.build();
     }
 
-/*    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(daoAuthenticationProvider());
-    }*/
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
@@ -66,22 +62,4 @@ public class ApplicationSecurityConfig {
         return provider;
     }
 
-/*    @Bean
-    protected UserDetailsService userDetailsService() {
-        UserDetails andreasKreouzos = User.builder()
-                .username("andreaskreouzos")
-                .password(passwordEncoder.encode("password123"))
-                .roles(ADMIN.name())
-                //.authorities(ADMIN.getGrantedAuthorities())
-                .build();
-
-        UserDetails chrisPapadopoulos = User.builder()
-                .username("chris")
-                .password(passwordEncoder.encode("password"))
-                .roles(USER.name())
-                //.authorities(USER.getGrantedAuthorities())
-                .build();
-
-        return new InMemoryUserDetailsManager(andreasKreouzos,chrisPapadopoulos);
-    }*/
 }

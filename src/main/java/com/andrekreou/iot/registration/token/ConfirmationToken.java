@@ -1,6 +1,7 @@
 package com.andrekreou.iot.registration.token;
 
 import com.andrekreou.iot.auth.ApplicationUser;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 public class ConfirmationToken {
 
