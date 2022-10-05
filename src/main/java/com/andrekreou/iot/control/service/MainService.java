@@ -4,6 +4,7 @@ import com.andrekreou.iot.operations.crypto.model.CryptoNews;
 import com.andrekreou.iot.operations.crypto.repository.CryptoNewsRepo;
 import com.andrekreou.iot.operations.movies.model.Movies;
 import com.andrekreou.iot.operations.movies.repository.MoviesRepo;
+import io.micrometer.core.annotation.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ public class MainService {
         return new ArrayList<>(cryptoNewsRepo.findAll());
     }
 
+    @Timed(value = "show.time", description = "Time taken to return showAllMovies")
     public List<Movies> showAllMovies(){
         return new ArrayList<>(moviesRepo.findAll());
     }
