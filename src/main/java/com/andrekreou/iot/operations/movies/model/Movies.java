@@ -1,4 +1,4 @@
-package com.andrekreou.iot.movies.model;
+package com.andrekreou.iot.operations.movies.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

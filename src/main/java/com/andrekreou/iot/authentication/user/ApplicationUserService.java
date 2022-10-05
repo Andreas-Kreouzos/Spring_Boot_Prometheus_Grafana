@@ -33,34 +33,36 @@ public class ApplicationUserService implements UserDetailsService {
     }
 
     public String signUpUser(ApplicationUser applicationUser, ConfirmationToken confirmationToken) {
-        boolean mailExists = isMailExists(applicationUser);
+        boolean mailExists = doesMailExists(applicationUser);
+        checkEmail(confirmationToken, mailExists);
+        String encodedPassword = bCryptPasswordEncoder.encode(applicationUser.getPassword());
+        applicationUser.setPassword(encodedPassword);
+        userRepository.save(applicationUser);
+        String token = UUID.randomUUID().toString();
+        confirmationToken = getConfirmationToken(applicationUser, token);
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
+        return token;
+    }
 
+    private boolean doesMailExists(ApplicationUser applicationUser) {
+        return userRepository.findByEmail(applicationUser.getEmail()).isPresent();
+    }
+
+    private static void checkEmail(ConfirmationToken confirmationToken, boolean mailExists) {
         if (mailExists && (confirmationToken.getConfirmedAt() != null)) {
             throw new IllegalStateException("email already taken");
         }
+    }
 
-        String encodedPassword = bCryptPasswordEncoder.encode(applicationUser.getPassword());
-
-        applicationUser.setPassword(encodedPassword);
-
-        userRepository.save(applicationUser);
-
-        String token = UUID.randomUUID().toString();
-
-        confirmationToken = new ConfirmationToken(
+    private static ConfirmationToken getConfirmationToken(
+            ApplicationUser applicationUser,
+            String token) {
+        return new ConfirmationToken(
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(1),
                 applicationUser
         );
-
-        confirmationTokenService.saveConfirmationToken(confirmationToken);
-
-        return token;
-    }
-
-    private boolean isMailExists(ApplicationUser applicationUser) {
-        return userRepository.findByEmail(applicationUser.getEmail()).isPresent();
     }
 
     public int enableApplicationUser(String email) {

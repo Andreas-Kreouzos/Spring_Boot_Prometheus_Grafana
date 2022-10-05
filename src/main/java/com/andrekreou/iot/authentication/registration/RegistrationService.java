@@ -23,14 +23,27 @@ public class RegistrationService {
     private final RegistrationViewController registrationViewController;
 
     public String register(RegistrationRequest request) {
-        boolean isValidEmail = emailValidator.
+        boolean isValidEmail = hasValidEmail(request);
+        checkMailValidation(isValidEmail);
+        String token = getToken(request);
+        String link = "https://localhost:8443/api/v1/registration/confirm?token=" + token;
+        emailSend(request, link);
+        return registrationViewController.showRegistrationCompleteForm();
+    }
+
+    private boolean hasValidEmail(RegistrationRequest request) {
+        return emailValidator.
                 test(request.getEmail());
+    }
+
+    private static void checkMailValidation(boolean isValidEmail) {
         if (!isValidEmail) {
             throw new IllegalStateException("Email not valid");
         }
+    }
 
-
-        String token = applicationUserService.signUpUser(
+    private String getToken(RegistrationRequest request) {
+        return applicationUserService.signUpUser(
                 new ApplicationUser(
                         request.getFirstName(),
                         request.getLastName(),
@@ -39,15 +52,13 @@ public class RegistrationService {
                         ApplicationUserRole.USER
                 ),new ConfirmationToken()
         );
+    }
 
-        String link = "https://localhost:8443/api/v1/registration/confirm?token=" + token;
-
+    private void emailSend(RegistrationRequest request, String link) {
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getFirstName(),
                         link));
-
-        return registrationViewController.showRegistrationCompleteForm();
     }
 
     @Transactional
