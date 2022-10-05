@@ -1,10 +1,10 @@
 package com.andrekreou.iot.registration;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@org.springframework.stereotype.Controller
+@Controller
 public class RegistrationViewController {
-
     @GetMapping("/register")
     public String showRegistrationForm(){
         return "register";
@@ -13,5 +13,10 @@ public class RegistrationViewController {
     @GetMapping("/registration-complete")
     public String showRegistrationCompleteForm(){
         return "registration-complete";
+    }
+
+    @GetMapping("/verification-complete")
+    public String showVerificationCompleteForm(){
+        return "verification-complete";
     }
 }

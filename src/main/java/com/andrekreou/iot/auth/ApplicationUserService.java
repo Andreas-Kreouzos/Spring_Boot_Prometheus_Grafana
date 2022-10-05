@@ -1,7 +1,6 @@
 package com.andrekreou.iot.auth;
 
 import com.andrekreou.iot.registration.token.ConfirmationToken;
-import com.andrekreou.iot.registration.token.ConfirmationTokenRepository;
 import com.andrekreou.iot.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +22,6 @@ public class ApplicationUserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
-    private final ConfirmationTokenRepository confirmationTokenRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email)

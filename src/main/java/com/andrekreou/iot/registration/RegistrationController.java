@@ -2,9 +2,10 @@ package com.andrekreou.iot.registration;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping(path = "/api/v1/registration")
 @AllArgsConstructor
 public class RegistrationController {

@@ -20,6 +20,7 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
+    private final RegistrationViewController registrationViewController;
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.
@@ -46,7 +47,7 @@ public class RegistrationService {
                 buildEmail(request.getFirstName(),
                         link));
 
-        return token;
+        return registrationViewController.showRegistrationCompleteForm();
     }
 
     @Transactional
@@ -69,7 +70,7 @@ public class RegistrationService {
         confirmationTokenService.setConfirmedAt(token);
         applicationUserService.enableApplicationUser(
                 confirmationToken.getApplicationUser().getEmail());
-        return "confirmed";
+        return registrationViewController.showVerificationCompleteForm();
     }
 
     private String buildEmail(String name, String link) {
