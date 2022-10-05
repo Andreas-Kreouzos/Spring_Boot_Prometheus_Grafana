@@ -1,6 +1,6 @@
-package com.andrekreou.iot.crypto.controller;
+package com.andrekreou.iot.control.controller;
 
-import com.andrekreou.iot.crypto.service.CryptoNewsService;
+import com.andrekreou.iot.control.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 @Controller
-public class NewsHTMLController {
+public class MainController {
 
-    CryptoNewsService cryptoNewsService;
+    private final MainService mainService;
 
     @Autowired
-    public NewsHTMLController(CryptoNewsService cryptoNewsService) {
-        this.cryptoNewsService = cryptoNewsService;
+    public MainController(MainService mainService) {
+        this.mainService = mainService;
     }
 
     @GetMapping("/")
@@ -31,10 +31,17 @@ public class NewsHTMLController {
         return "login";
     }
 
-    //Method to handle the HTTP request for showing DB contents
+    //Method to handle the HTTP request for showing DB contents of Crypto News
     @GetMapping("/show-news-contents")
     public String showAllRates(HttpServletRequest request){
-        request.setAttribute("rates", cryptoNewsService.showAllRates());
+        request.setAttribute("rates", mainService.showAllRates());
         return "newsdbcontents";
+    }
+
+    //Method to handle the HTTP request for showing DB contents of Movies Stats
+    @GetMapping("/show-movies-contents")
+    public String showAllMovies(HttpServletRequest request){
+        request.setAttribute("movies", mainService.showAllMovies());
+        return "moviesdbcontents";
     }
 }
