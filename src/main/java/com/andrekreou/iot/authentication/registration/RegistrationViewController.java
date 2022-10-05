@@ -1,4 +1,4 @@
-package com.andrekreou.iot.registration;
+package com.andrekreou.iot.authentication.registration;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

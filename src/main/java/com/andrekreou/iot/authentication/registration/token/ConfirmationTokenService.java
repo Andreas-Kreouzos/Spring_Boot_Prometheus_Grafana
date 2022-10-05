@@ -1,4 +1,4 @@
-package com.andrekreou.iot.registration.token;
+package com.andrekreou.iot.authentication.registration.token;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

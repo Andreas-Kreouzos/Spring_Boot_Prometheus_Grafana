@@ -1,7 +1,7 @@
-package com.andrekreou.iot.auth;
+package com.andrekreou.iot.authentication.user;
 
-import com.andrekreou.iot.registration.token.ConfirmationToken;
-import com.andrekreou.iot.registration.token.ConfirmationTokenService;
+import com.andrekreou.iot.authentication.registration.token.ConfirmationToken;
+import com.andrekreou.iot.authentication.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

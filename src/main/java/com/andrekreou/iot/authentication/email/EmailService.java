@@ -1,4 +1,4 @@
-package com.andrekreou.iot.email;
+package com.andrekreou.iot.authentication.email;
 
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

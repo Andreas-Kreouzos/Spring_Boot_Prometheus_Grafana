@@ -52,7 +52,6 @@ li a:hover:not(.active) {
 
 
 body {
-    background-image: url(resources/images/IoTDevices.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 500px;

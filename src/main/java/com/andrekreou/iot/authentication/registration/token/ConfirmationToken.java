@@ -1,6 +1,6 @@
-package com.andrekreou.iot.registration.token;
+package com.andrekreou.iot.authentication.registration.token;
 
-import com.andrekreou.iot.auth.ApplicationUser;
+import com.andrekreou.iot.authentication.user.ApplicationUser;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

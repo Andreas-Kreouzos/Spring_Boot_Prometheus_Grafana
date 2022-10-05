@@ -1,4 +1,4 @@
-package com.andrekreou.iot.registration;
+package com.andrekreou.iot.authentication.registration;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package com.andrekreou.iot.security;
+package com.andrekreou.iot.authentication.security;
 
 public enum ApplicationUserPermission {
     NEWS_VIEW("news:view"),

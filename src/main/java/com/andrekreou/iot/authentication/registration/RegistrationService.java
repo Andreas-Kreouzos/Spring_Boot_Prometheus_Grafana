@@ -1,11 +1,11 @@
-package com.andrekreou.iot.registration;
+package com.andrekreou.iot.authentication.registration;
 
-import com.andrekreou.iot.auth.ApplicationUser;
-import com.andrekreou.iot.auth.ApplicationUserService;
-import com.andrekreou.iot.email.EmailSender;
-import com.andrekreou.iot.registration.token.ConfirmationToken;
-import com.andrekreou.iot.registration.token.ConfirmationTokenService;
-import com.andrekreou.iot.security.ApplicationUserRole;
+import com.andrekreou.iot.authentication.registration.token.ConfirmationToken;
+import com.andrekreou.iot.authentication.user.ApplicationUser;
+import com.andrekreou.iot.authentication.user.ApplicationUserService;
+import com.andrekreou.iot.authentication.email.EmailSender;
+import com.andrekreou.iot.authentication.registration.token.ConfirmationTokenService;
+import com.andrekreou.iot.authentication.security.ApplicationUserRole;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

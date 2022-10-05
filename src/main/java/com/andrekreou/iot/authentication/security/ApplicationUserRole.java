@@ -1,4 +1,4 @@
-package com.andrekreou.iot.security;
+package com.andrekreou.iot.authentication.security;
 
 import com.google.common.collect.Sets;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -6,8 +6,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.andrekreou.iot.security.ApplicationUserPermission.MOVIES_VIEW;
-import static com.andrekreou.iot.security.ApplicationUserPermission.NEWS_VIEW;
+import static com.andrekreou.iot.authentication.security.ApplicationUserPermission.MOVIES_VIEW;
+import static com.andrekreou.iot.authentication.security.ApplicationUserPermission.NEWS_VIEW;
 
 public enum ApplicationUserRole {
     ADMIN(Sets.newHashSet(NEWS_VIEW,MOVIES_VIEW)),

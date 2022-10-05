@@ -1,6 +1,6 @@
-package com.andrekreou.iot.auth;
+package com.andrekreou.iot.authentication.user;
 
-import com.andrekreou.iot.security.ApplicationUserRole;
+import com.andrekreou.iot.authentication.security.ApplicationUserRole;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
