@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 public class MoviesController {
 
-    //Dependency injection to connect with NewsService layer
+    //Dependency injection to connect with CryptoNewsService layer
     private final MoviesService moviesService;
 
     @Autowired

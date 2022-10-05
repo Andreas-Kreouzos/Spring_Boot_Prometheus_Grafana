@@ -1,4 +1,4 @@
-package com.andrekreou.iot.bitpay.model;
+package com.andrekreou.iot.crypto.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,22 +9,11 @@ import javax.persistence.*;
 //the JSON array to be imported. The name keys from JSON have
 //to be exactly the same as here, in order for data to be fetched.
 
-
-//Don't forget to apply Lombok, at the end of the project as appendix!!!
 @Entity
 @Table
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BitPayRates {
+public class CryptoNews {
     @Id
-/*    @SequenceGenerator(
-            name = "bitpay_sequence",
-            sequenceName = "bitpay_sequence",
-            allocationSize = 1
-            )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "bitpay_sequence"
-    )*/
     private Integer news_id;
     private String news_provider_name;
     @JsonProperty("headline")
@@ -33,14 +22,14 @@ public class BitPayRates {
     private String related_image;
 
 
-    public BitPayRates() {
+    public CryptoNews() {
     }
 
-    public BitPayRates(Integer news_id,
-                       String news_provider_name,
-                       String HEADLINE,
-                       String news_link,
-                       String related_image) {
+    public CryptoNews(Integer news_id,
+                      String news_provider_name,
+                      String HEADLINE,
+                      String news_link,
+                      String related_image) {
         this.news_id = news_id;
         this.news_provider_name = news_provider_name;
         this.HEADLINE = HEADLINE;

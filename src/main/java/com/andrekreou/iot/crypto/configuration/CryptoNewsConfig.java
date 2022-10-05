@@ -1,7 +1,7 @@
-package com.andrekreou.iot.bitpay.configuration;
+package com.andrekreou.iot.crypto.configuration;
 
-import com.andrekreou.iot.bitpay.model.BitPayRates;
-import com.andrekreou.iot.bitpay.repository.BitPayRatesRepo;
+import com.andrekreou.iot.crypto.model.CryptoNews;
+import com.andrekreou.iot.crypto.repository.CryptoNewsRepo;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,10 +19,10 @@ import java.util.List;
 //The configuration class to fetch data from url and execute the insertion
 //of the data into the PostgreSQL database
 @Configuration
-public class BitPayRatesConfig {
+public class CryptoNewsConfig {
 
     @Bean
-    CommandLineRunner newsCommandLineRunner(BitPayRatesRepo bitPayRatesRepo){
+    CommandLineRunner newsCommandLineRunner(CryptoNewsRepo cryptoNewsRepo){
         return args -> {
             String url = "https://investing-cryptocurrency-markets.p.rapidapi.com/coins/get-news?pair_ID=1057391";
             RestTemplate restTemplate = new RestTemplate();
@@ -41,7 +41,7 @@ public class BitPayRatesConfig {
                     request,
                     String.class);
 
-            List<BitPayRates> bitPayRatesList = new ArrayList<>();
+            List<CryptoNews> cryptoNewsList = new ArrayList<>();
             ObjectMapper mapper = JsonMapper
                     .builder()
                     .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES).build();
@@ -53,13 +53,13 @@ public class BitPayRatesConfig {
                     JsonNode screenDataNode = objNode.get("screen_data");
                     JsonNode newsNode = screenDataNode.get("news");
                     for(JsonNode news : newsNode){
-                        BitPayRates newJsonNode = mapper.treeToValue(news, BitPayRates.class);
-                        bitPayRatesList.add(newJsonNode);
+                        CryptoNews newJsonNode = mapper.treeToValue(news, CryptoNews.class);
+                        cryptoNewsList.add(newJsonNode);
                     }
                 }
             }
-            bitPayRatesRepo.saveAll(bitPayRatesList);
-            System.out.println(bitPayRatesList);
+            cryptoNewsRepo.saveAll(cryptoNewsList);
+            System.out.println(cryptoNewsList);
         };
     }
 }
