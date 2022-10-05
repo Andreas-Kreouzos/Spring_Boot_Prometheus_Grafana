@@ -92,7 +92,7 @@ public class BitPayRates {
 
     @Override
     public String toString() {
-        return "BitPayRates{" +
+        return "Movies{" +
                 "news_id=" + news_id +
                 ", news_provider_name='" + news_provider_name + '\'' +
                 ", HEADLINE='" + HEADLINE + '\'' +

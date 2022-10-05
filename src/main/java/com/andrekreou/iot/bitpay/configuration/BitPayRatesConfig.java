@@ -22,7 +22,7 @@ import java.util.List;
 public class BitPayRatesConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(BitPayRatesRepo bitPayRatesRepo){
+    CommandLineRunner newsCommandLineRunner(BitPayRatesRepo bitPayRatesRepo){
         return args -> {
             String url = "https://investing-cryptocurrency-markets.p.rapidapi.com/coins/get-news?pair_ID=1057391";
             RestTemplate restTemplate = new RestTemplate();
