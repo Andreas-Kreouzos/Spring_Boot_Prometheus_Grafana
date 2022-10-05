@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/main.css}"/>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</head>
+
+<body>
+
+<ul>
+    <li><a href="http://localhost:8080/">Home</a></li>
+    <li><a href="https://github.com/Andreas-Kreouzos">Github</a></li>
+</ul>
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>IoT Application</h1>
+    </div>
+
+</main>
+    <!--Display DB contents on HTML and Thymeleaf-->
+    <div class="container text-center" id="tasksDiv">
+        <h3>Database Contents</h3>
+        <hr>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Rate</th>
+                    <th>Timestamp</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="rate: ${rates}">
+                        <td th:text="${rate.id}"> </td>
+                        <td th:text="${rate.code}"> </td>
+                        <td th:text="${rate.name}"> </td>
+                        <td th:text="${rate.rate}"> </td>
+                        <td th:text="${rate.timestamp}"> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</body>
+</html>

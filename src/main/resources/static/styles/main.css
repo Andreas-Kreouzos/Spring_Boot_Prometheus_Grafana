@@ -1,0 +1,61 @@
+body {
+    padding-top: 5rem;
+}
+
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+h1{
+    color:#0000FF;
+    font-family: Ubuntu;
+}
+
+h2{
+    color:#FF0000;
+    font-family: Ubuntu;
+}
+
+h3{
+    color:#0000FF;
+    font-family: Ubuntu;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: blue;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    font-family: Ubuntu;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    color: white;
+}
+
+
+body {
+    background-image: url(resources/images/IoTDevices.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 500px;
+    background-position: center;
+    backdrop-filter: blur(2px);
+}
