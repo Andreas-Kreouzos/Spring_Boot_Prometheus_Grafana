@@ -25,8 +25,12 @@ public class ApplicationSecurityConfig {
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .requiresChannel()
+                    .antMatchers("/greeting","/actuator/prometheus")
+                    .requiresInsecure()
+                .and()
                 .authorizeRequests()
-                    .antMatchers("/api/v*/registration/**","/register*","/login","/registration","/registration-complete").permitAll()
+                    .antMatchers("/api/v*/registration/**","/register*","/login","/registration","/registration-complete","/greeting").permitAll()
                     //.antMatchers("/show-news-contents").hasRole(ADMIN.name())
                     .anyRequest()
                     .authenticated()
@@ -48,7 +52,8 @@ public class ApplicationSecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public AuthenticationManager authenticationManager(
+            AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
