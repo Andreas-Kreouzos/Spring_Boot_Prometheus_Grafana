@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Setter
+@ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CryptoNews {
     @Id
@@ -37,16 +39,5 @@ public class CryptoNews {
         this.HEADLINE = HEADLINE;
         this.news_link = news_link;
         this.related_image = related_image;
-    }
-
-    @Override
-    public String toString() {
-        return "CryptoNews{" +
-                "news_id=" + news_id +
-                ", news_provider_name='" + news_provider_name + '\'' +
-                ", HEADLINE='" + HEADLINE + '\'' +
-                ", news_link='" + news_link + '\'' +
-                ", related_image='" + related_image + '\'' +
-                '}';
     }
 }

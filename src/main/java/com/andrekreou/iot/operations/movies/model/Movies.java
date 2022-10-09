@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 @Builder
 @Getter
 @Setter
+@ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movies {
     @Id
@@ -34,15 +36,5 @@ public class Movies {
         this.title = title;
         this.worldwideLifetimeGross = worldwideLifetimeGross;
         this.year = year;
-    }
-
-    @Override
-    public String toString() {
-        return "Movies{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", worldwideLifetimeGross=" + worldwideLifetimeGross +
-                ", year=" + year +
-                '}';
     }
 }
