@@ -2,6 +2,8 @@ package com.andrekreou.iot.operations.movies.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,6 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table
 @Builder
+@Getter
+@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movies {
     @Id
@@ -29,38 +33,6 @@ public class Movies {
         this.id = id;
         this.title = title;
         this.worldwideLifetimeGross = worldwideLifetimeGross;
-        this.year = year;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getWorldwideLifetimeGross() {
-        return worldwideLifetimeGross;
-    }
-
-    public void setWorldwideLifetimeGross(String worldwideLifetimeGross) {
-        this.worldwideLifetimeGross = worldwideLifetimeGross;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
         this.year = year;
     }
 
