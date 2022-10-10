@@ -2,6 +2,7 @@ package com.andrekreou.iot.control.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -10,9 +11,15 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ExceptionHandling extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(IllegalStateException.class)
-    public ResponseEntity<Object> handleConflict(IllegalStateException exception) {
+    public ResponseEntity<Object> illegalStateExceptionConflict(IllegalStateException exception) {
         String error = "Error: " + exception.getMessage();
         return buildResponseEntity(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, error));
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<Object> usernameNotFoundExceptionConflict(UsernameNotFoundException exception) {
+        String error = "Error: " + exception.getMessage();
+        return buildResponseEntity(new ErrorResponse(HttpStatus.FORBIDDEN, error));
     }
 
     private ResponseEntity<Object> buildResponseEntity(ErrorResponse errorResponse){

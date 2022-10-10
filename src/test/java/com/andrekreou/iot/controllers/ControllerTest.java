@@ -48,6 +48,14 @@ public class ControllerTest {
 
     @Test
     @WithMockUser(username="admin",roles={"USER","ADMIN"})
+    @DisplayName("Testing the News view of the application")
+    public void testErrorPage() throws Exception{
+        mockMvc.perform(get("/login-error"))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    @WithMockUser(username="admin",roles={"USER","ADMIN"})
     @DisplayName("Testing the Movies view of the application")
     public void testMoviesPage() throws Exception{
         mockMvc.perform(get("/show-movies-contents"))

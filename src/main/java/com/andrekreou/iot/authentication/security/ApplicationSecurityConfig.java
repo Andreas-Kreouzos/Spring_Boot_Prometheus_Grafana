@@ -40,6 +40,7 @@ public class ApplicationSecurityConfig {
                     .usernameParameter("email")
                     .permitAll()
                     .defaultSuccessUrl("/",true)
+                    .failureUrl("/login-error")
                 .and()
                 .logout()
                     .logoutUrl("/logout")
