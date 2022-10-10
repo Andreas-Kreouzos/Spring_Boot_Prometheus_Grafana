@@ -30,7 +30,7 @@ public class ApplicationSecurityConfig {
                     .requiresInsecure()
                 .and()
                 .authorizeRequests()
-                    .antMatchers("/api/v*/registration/**","/register*","/login","/registration","/registration-complete","/greeting").permitAll()
+                    .antMatchers("/api/v*/registration/**","/register*","/login","/registration","/registration-complete","/verification-complete").permitAll()
                     //.antMatchers("/show-news-contents").hasRole(ADMIN.name())
                     .anyRequest()
                     .authenticated()

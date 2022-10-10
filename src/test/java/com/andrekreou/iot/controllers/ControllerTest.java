@@ -45,6 +45,14 @@ public class ControllerTest {
     }
 
     @Test
+    @DisplayName("Testing the Verification Complete view of the application")
+    public void testVerificationCompletePage() throws Exception{
+        mockMvc.perform(get("/verification-complete"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("verification-complete"));
+    }
+
+    @Test
     @WithMockUser(username="admin",roles={"USER","ADMIN"})
     @DisplayName("Testing the Welcome view of the application")
     public void testWelcomePage() throws Exception{
