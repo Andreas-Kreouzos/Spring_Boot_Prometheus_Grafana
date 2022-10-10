@@ -26,12 +26,18 @@ public class ApplicationSecurityConfig {
         http
                 .csrf().disable()
                 .requiresChannel()
-                    .antMatchers("/greeting","/actuator/prometheus")
+                    .antMatchers("/actuator/prometheus")
                     .requiresInsecure()
                 .and()
                 .authorizeRequests()
-                    .antMatchers("/api/v*/registration/**","/register*","/login","/registration","/registration-complete","/verification-complete").permitAll()
-                    //.antMatchers("/show-news-contents").hasRole(ADMIN.name())
+                    .antMatchers(
+                            "/api/v*/registration/**",
+                            "/register*",
+                            "/login",
+                            "/registration",
+                            "/registration-complete",
+                            "/verification-complete",
+                            "/actuator/prometheus").permitAll()
                     .anyRequest()
                     .authenticated()
                     .and()
