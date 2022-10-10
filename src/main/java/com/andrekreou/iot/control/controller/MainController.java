@@ -48,4 +48,19 @@ public class MainController {
         request.setAttribute("movies", mainService.showAllMovies());
         return "movies-db-contents";
     }
+
+    @GetMapping("/register")
+    public String showRegistrationForm(){
+        return "register";
+    }
+
+    @GetMapping("/registration-complete")
+    public String showRegistrationCompleteForm(){
+        return "registration-complete";
+    }
+
+    @GetMapping("/verification-complete")
+    public String showVerificationCompleteForm(){
+        return "verification-complete";
+    }
 }

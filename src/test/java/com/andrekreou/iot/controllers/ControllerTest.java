@@ -29,6 +29,22 @@ public class ControllerTest {
     }
 
     @Test
+    @DisplayName("Testing the Register view of the application")
+    public void testRegisterPage() throws Exception{
+        mockMvc.perform(get("/register"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("register"));
+    }
+
+    @Test
+    @DisplayName("Testing the Registration Complete view of the application")
+    public void testRegisterCompletePage() throws Exception{
+        mockMvc.perform(get("/registration-complete"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("registration-complete"));
+    }
+
+    @Test
     @WithMockUser(username="admin",roles={"USER","ADMIN"})
     @DisplayName("Testing the Welcome view of the application")
     public void testWelcomePage() throws Exception{
@@ -48,7 +64,7 @@ public class ControllerTest {
 
     @Test
     @WithMockUser(username="admin",roles={"USER","ADMIN"})
-    @DisplayName("Testing the News view of the application")
+    @DisplayName("Testing the Error URL from Spring Security")
     public void testErrorPage() throws Exception{
         mockMvc.perform(get("/login-error"))
                 .andExpect(status().is4xxClientError());

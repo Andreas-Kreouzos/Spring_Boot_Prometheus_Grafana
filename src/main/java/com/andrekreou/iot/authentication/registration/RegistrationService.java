@@ -6,6 +6,7 @@ import com.andrekreou.iot.authentication.user.ApplicationUserService;
 import com.andrekreou.iot.authentication.email.EmailSender;
 import com.andrekreou.iot.authentication.registration.token.ConfirmationTokenService;
 import com.andrekreou.iot.authentication.security.ApplicationUserRole;
+import com.andrekreou.iot.control.controller.MainController;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,7 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
-    private final RegistrationViewController registrationViewController;
+    private final MainController mainController;
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = hasValidEmail(request);
@@ -28,7 +29,7 @@ public class RegistrationService {
         String token = getToken(request);
         String link = "https://localhost:8443/api/v1/registration/confirm?token=" + token;
         emailSend(request, link);
-        return registrationViewController.showRegistrationCompleteForm();
+        return mainController.showRegistrationCompleteForm();
     }
 
     private boolean hasValidEmail(RegistrationRequest request) {
@@ -81,7 +82,7 @@ public class RegistrationService {
         confirmationTokenService.setConfirmedAt(token);
         applicationUserService.enableApplicationUser(
                 confirmationToken.getApplicationUser().getEmail());
-        return registrationViewController.showVerificationCompleteForm();
+        return mainController.showVerificationCompleteForm();
     }
 
     private String buildEmail(String name, String link) {
