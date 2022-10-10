@@ -1,6 +1,8 @@
 package com.andrekreou.iot.control.controller;
 
 import com.andrekreou.iot.control.service.MainService;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
@@ -14,10 +16,14 @@ import java.security.Principal;
 public class MainController {
 
     private final MainService mainService;
+    private final Counter hitCounter;
 
     @Autowired
-    public MainController(MainService mainService) {
+    public MainController(MainService mainService, MeterRegistry meterRegistry) {
         this.mainService = mainService;
+        this.hitCounter = Counter.builder("hit_counter")
+                .description("Number of Hits")
+                .register(meterRegistry);
     }
 
     @GetMapping("/")
@@ -40,6 +46,7 @@ public class MainController {
     @GetMapping("/show-news-contents")
     public String showAllRates(HttpServletRequest request){
         request.setAttribute("rates", mainService.showAllRates());
+        hitCounter.increment();
         return "news-db-contents";
     }
 
