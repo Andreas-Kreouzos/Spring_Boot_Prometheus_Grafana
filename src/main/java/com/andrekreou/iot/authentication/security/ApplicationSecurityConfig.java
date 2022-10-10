@@ -34,9 +34,6 @@ public class ApplicationSecurityConfig {
                             "/api/v*/registration/**",
                             "/register*",
                             "/login",
-                            "/registration",
-                            "/registration-complete",
-                            "/verification-complete",
                             "/actuator/prometheus").permitAll()
                     .anyRequest()
                     .authenticated()

@@ -10,8 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.logout;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -40,16 +39,16 @@ public class ControllerTest {
     @DisplayName("Testing the Registration Complete view of the application")
     public void testRegisterCompletePage() throws Exception{
         mockMvc.perform(get("/registration-complete"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("registration-complete"));
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost/login"));
     }
 
     @Test
     @DisplayName("Testing the Verification Complete view of the application")
     public void testVerificationCompletePage() throws Exception{
         mockMvc.perform(get("/verification-complete"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("verification-complete"));
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost/login"));
     }
 
     @Test
