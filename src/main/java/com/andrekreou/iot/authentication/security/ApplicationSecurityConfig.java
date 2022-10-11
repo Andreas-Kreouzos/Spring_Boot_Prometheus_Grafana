@@ -26,7 +26,7 @@ public class ApplicationSecurityConfig {
         http
                 .csrf().disable()
                 .requiresChannel()
-                    .antMatchers("/actuator/prometheus")
+                    .antMatchers("/actuator/**")
                     .requiresInsecure()
                 .and()
                 .authorizeRequests()
@@ -34,7 +34,7 @@ public class ApplicationSecurityConfig {
                             "/api/v*/registration/**",
                             "/register*",
                             "/login",
-                            "/actuator/prometheus").permitAll()
+                            "/actuator/**").permitAll()
                     .anyRequest()
                     .authenticated()
                     .and()
