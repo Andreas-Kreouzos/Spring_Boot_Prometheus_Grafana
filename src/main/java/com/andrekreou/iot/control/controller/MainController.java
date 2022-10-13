@@ -1,6 +1,7 @@
 package com.andrekreou.iot.control.controller;
 
 import com.andrekreou.iot.control.service.MainService;
+import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ public class MainController {
         return "news-db-contents";
     }
 
+    @Timed(value = "show-all-movies.time", description = "Time taken to return Movies")
     @GetMapping("/show-movies-contents")
     public String showAllMovies(HttpServletRequest request){
         request.setAttribute("movies", mainService.showAllMovies());
