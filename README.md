@@ -65,9 +65,3 @@ Prometheus and turns it into graphs.
 specialized commands and reading the IP addresses of the two containers.
 
 8. Creating separate classes for Exception Handling at the global level, which means that these classes control any exception that occurs.
-
-<br>
-
-In order to use this URL, it was necessary to provide additional authentication to the API. To be
-specific, an API key was needed that was produced as soon as the subscription to the API was completed.
-The final form of the POJO class was the following:
