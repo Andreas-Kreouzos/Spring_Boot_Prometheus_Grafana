@@ -65,3 +65,29 @@ Prometheus and turns it into graphs.
 specialized commands and reading the IP addresses of the two containers.
 
 8. Creating separate classes for Exception Handling at the global level, which means that these classes control any exception that occurs.
+
+## Docker Commands on WSL Ubuntu
+
+**Start Docker**
+
+```sudo service docker start```
+
+**Display All Containers**
+
+```docker ps --all```
+
+**Install Prometheus**
+
+```docker run -d --name=prometheus -p 9090:9090 -v /mnt/d/Projects/Msc-Thesis-Project/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus --config.file=/etc/prometheus/prometheus.yml```
+
+**Install Grafana**
+
+```docker run -d --name=grafana -p 3000:3000 grafana/grafana```
+
+**Stop Container**
+
+```docker stop 'container name'```
+
+**Remove Container**
+
+```docker rm 'container name'```
