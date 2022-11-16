@@ -1,4 +1,4 @@
-# MSc Thesis - Data Processing by Implementation of RESTful API Web Service in Spring Framework with Metrics Visualization in Prometheus and Grafana
+<center># MSc Thesis - Data Processing by Implementation of RESTful API Web Service in Spring Framework with Metrics Visualization in Prometheus and Grafana</center>
 
 
 ## Introduction
