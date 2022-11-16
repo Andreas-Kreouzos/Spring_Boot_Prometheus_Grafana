@@ -1,4 +1,4 @@
-# MSc Thesis Spring Boot Application
+# MSc Thesis - Data Processing by Implementation of RESTful API Web Service in Spring Framework with Metrics Visualization in Prometheus and Grafana
 
 
 ## Introduction
