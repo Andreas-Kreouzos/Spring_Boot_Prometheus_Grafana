@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/main.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/welcome.css}"/>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <style>
+        button {
+            line-height: 12px;
+            width: 10%;
+            height: 15%;
+            color: white;
+            background-color: #FF0000;
+            font-size: 10pt;
+            font-family: Ubuntu;
+            margin-top: 50px;
+            margin-right: 2px;
+            position:fixed;
+            top:5px;
+            right:10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="https://github.com/Andreas-Kreouzos" target="_blank">Github</a></li>
+    <li><a href="/show-news-contents">News Contents</a></li>
+    <li><a href="/show-movies-contents">Movies Contents</a></li>
+</ul>
+
+<main role="main" class="container">
+
+    <form class="form-signin" method="get" action="/logout">
+        <button class="button" type="submit">Logout</button>
+    </form>
+
+    <div class="starter-template">
+        <h1>IoT Application</h1>
+        <h2>
+            <span th:text="'Welcome to our application ' + ${name}"></span>
+        </h2>
+    </div>
+    
+    <div class="container_image">
+        <img src="/image/IMDbLogo.png" width="210" height="150" alt="IMDb Logo"/><br/>
+        <a href="/show-movies-contents">Movies Statistics App</a>
+    </div>
+
+    <div class="container_image">
+        <img src="/image/BitCoin.jpeg" width="210" height="150" alt="BitCoin Logo"/><br/>
+        <a href="/show-news-contents">Cryptocurrency News App</a>
+    </div>
+</main>
+
+
+</body>
+</html>
