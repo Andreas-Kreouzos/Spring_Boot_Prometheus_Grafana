@@ -20,7 +20,7 @@ public class ControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    @DisplayName("Testing the Login view of the application!!!")
+    @DisplayName("Testing the Login view of the application")
     public void testLoginPage() throws Exception{
         mockMvc.perform(get("/login"))
                 .andExpect(status().isOk())
