@@ -10,11 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 public class EmailValidationTests {
 
+    EmailValidator validator = new EmailValidator();
+
     @Test
     @DisplayName("Check the input email validity based on the RFC822 pattern")
     public void testUsingRFC822Regex() {
         String emailAddress = "username@domain.com";
-        assertTrue(EmailValidator.patternMatches(emailAddress));
+        assertTrue(validator.test(emailAddress));
     }
 
 }
