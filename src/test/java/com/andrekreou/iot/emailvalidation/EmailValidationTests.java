@@ -2,7 +2,8 @@ package com.andrekreou.iot.emailvalidation;
 
 import com.andrekreou.iot.authentication.registration.EmailValidator;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,17 +24,17 @@ public class EmailValidationTests {
     @Value("${string.regex}")
     private String regex;
 
-    @Test
-    @DisplayName("Check a valid email address based on the RFC822 pattern")
-    public void testValidEMailAddressUsingRFC822Regex() {
-        String emailAddress = "andreas.kreouzos@hotmail.com";
+    @ParameterizedTest
+    @ValueSource(strings = {"test@example.com", "test.test@example.com", "test+test@example.com"})
+    @DisplayName("Check valid email addresses based on the RFC822 pattern")
+    public void testValidEMailAddressUsingRFC822Regex(String emailAddress) {
         assertTrue(validator.test(emailAddress));
     }
 
-    @Test
-    @DisplayName("Check an invalid email address based on the RFC822 pattern")
-    public void testInvalidEMailAddressUsingRFC822Regex() {
-        String emailAddress = "andreas.kreouzoshotmail.com";
+    @ParameterizedTest
+    @ValueSource(strings = {"testexample.com", "test.test.@example.com", ".test+test@example.com"})
+    @DisplayName("Check invalid email addresses based on the RFC822 pattern")
+    public void testInvalidEMailAddressUsingRFC822Regex(String emailAddress) {
         assertFalse(validator.test(emailAddress));
     }
 }
