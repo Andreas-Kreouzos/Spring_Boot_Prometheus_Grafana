@@ -18,5 +18,4 @@ public class EmailValidationTests {
         String emailAddress = "username@domain.com";
         assertTrue(validator.test(emailAddress));
     }
-
 }
