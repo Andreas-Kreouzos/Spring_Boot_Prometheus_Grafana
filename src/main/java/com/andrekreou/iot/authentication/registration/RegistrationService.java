@@ -24,23 +24,13 @@ public class RegistrationService {
     private final MainController mainController;
 
     public String register(RegistrationRequest request) {
-        boolean isValidEmail = hasValidEmail(request);
-        checkMailValidation(isValidEmail);
+        if (!(emailValidator.test(request.getEmail()))) {
+            throw new IllegalStateException("Email not valid");
+        }
         String token = getToken(request);
         String link = "https://localhost:8443/api/v1/registration/confirm?token=" + token;
         emailSend(request, link);
         return mainController.showRegistrationCompleteForm();
-    }
-
-    private boolean hasValidEmail(RegistrationRequest request) {
-        return emailValidator.
-                test(request.getEmail());
-    }
-
-    private static void checkMailValidation(boolean isValidEmail) {
-        if (!isValidEmail) {
-            throw new IllegalStateException("Email not valid");
-        }
     }
 
     private String getToken(RegistrationRequest request) {
