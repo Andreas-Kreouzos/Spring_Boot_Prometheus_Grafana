@@ -2,19 +2,21 @@ package com.andrekreou.iot.operations.crypto.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table
 @Builder
-@Getter
-@Setter
-@ToString
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CryptoNews {
     @Id
@@ -24,20 +26,4 @@ public class CryptoNews {
     private String HEADLINE;
     private String news_link;
     private String related_image;
-
-
-    public CryptoNews() {
-    }
-
-    public CryptoNews(Integer news_id,
-                      String news_provider_name,
-                      String HEADLINE,
-                      String news_link,
-                      String related_image) {
-        this.news_id = news_id;
-        this.news_provider_name = news_provider_name;
-        this.HEADLINE = HEADLINE;
-        this.news_link = news_link;
-        this.related_image = related_image;
-    }
 }
