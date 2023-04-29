@@ -91,3 +91,8 @@ specialized commands and reading the IP addresses of the two containers.
 **Remove Container**
 
 ```docker rm 'container name'```
+
+
+**Define & Run Containers**
+
+```sudo docker compose up -d```
