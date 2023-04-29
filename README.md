@@ -3,7 +3,7 @@
 
 ## Introduction
 This project is the main application, developed in support of my MSc thesis entitled
-"Implementation Of RESTful Web Service Application in Spring Framework with Metrics Visualization in Prometheus and Grafana"
+"Implementation Of RESTful Web Service Application in Spring Framework with Metrics Visualization in Prometheus and Grafana".
 The project is part of the Master of Science Program "Informatics" currently organised by University of Piraeus - Greece.
 
 ## Scope
