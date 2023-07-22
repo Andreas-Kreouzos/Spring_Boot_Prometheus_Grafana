@@ -96,3 +96,20 @@ specialized commands and reading the IP addresses of the two containers.
 **Define & Run Containers**
 
 ```sudo docker compose up -d```
+
+## Google Email Authentication
+For the proper user authentication the application uses the "App Passwords" of Google. The following instructions 
+were used to make this possible
+
+Important: To create an app password, you need 2-Step Verification on your Google Account.
+
+If you use 2-Step-Verification and get a "password incorrect" error when you sign in, you 
+can try to use an app password.
+
+1. Go to your Google Account
+2. Select Security
+3. Under "Signing in to Google," select 2-Step Verification
+4. At the bottom of the page, select App passwords
+5. Enter a name that helps you remember where you’ll use the app password
+6. Select Generate
+7. This password must be set into application.properties in the `spring.mail.password` field
