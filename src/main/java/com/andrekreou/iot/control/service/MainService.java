@@ -27,12 +27,13 @@ public class MainService {
     }
 
     public CryptoNews saveOneCryptoItem(CryptoNews cryptoNews){
-        CryptoNews saveCrypto = CryptoNews.builder()
-                .news_provider_name(cryptoNews.getNews_provider_name())
-                .HEADLINE(cryptoNews.getHEADLINE())
-                .news_link(cryptoNews.getNews_link())
-                .related_image(cryptoNews.getRelated_image())
-                .build();
+        CryptoNews saveCrypto = new CryptoNews(
+                cryptoNews.getNews_id(),
+                cryptoNews.getNews_provider_name(),
+                cryptoNews.getHEADLINE(),
+                cryptoNews.getNews_link(),
+                cryptoNews.getRelated_image()
+        );
         return this.cryptoNewsRepo.save(saveCrypto);
     }
 }

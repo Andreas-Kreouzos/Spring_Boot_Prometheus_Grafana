@@ -7,14 +7,12 @@ import com.andrekreou.iot.authentication.email.EmailSender;
 import com.andrekreou.iot.authentication.registration.token.ConfirmationTokenService;
 import com.andrekreou.iot.authentication.security.ApplicationUserRole;
 import com.andrekreou.iot.control.controller.MainController;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
 @Service
-@AllArgsConstructor
 public class RegistrationService {
 
     private final ApplicationUserService applicationUserService;
@@ -23,8 +21,20 @@ public class RegistrationService {
     private final EmailSender emailSender;
     private final MainController mainController;
 
+    public RegistrationService(
+            ApplicationUserService applicationUserService,
+            EmailValidator emailValidator,
+            ConfirmationTokenService confirmationTokenService,
+            EmailSender emailSender, MainController mainController) {
+        this.applicationUserService = applicationUserService;
+        this.emailValidator = emailValidator;
+        this.confirmationTokenService = confirmationTokenService;
+        this.emailSender = emailSender;
+        this.mainController = mainController;
+    }
+
     public String register(RegistrationRequest request) {
-        if (!(emailValidator.test(request.getEmail()))) {
+        if (!(emailValidator.test(request.email()))) {
             throw new IllegalStateException("Email not valid");
         }
         String token = getToken(request);
@@ -36,10 +46,10 @@ public class RegistrationService {
     private String getToken(RegistrationRequest request) {
         return applicationUserService.signUpUser(
                 new ApplicationUser(
-                        request.getFirstName(),
-                        request.getLastName(),
-                        request.getEmail(),
-                        request.getPassword(),
+                        request.firstName(),
+                        request.lastName(),
+                        request.email(),
+                        request.password(),
                         ApplicationUserRole.USER
                 ),new ConfirmationToken()
         );
@@ -47,8 +57,8 @@ public class RegistrationService {
 
     private void emailSend(RegistrationRequest request, String link) {
         emailSender.send(
-                request.getEmail(),
-                buildEmail(request.getFirstName(),
+                request.email(),
+                buildEmail(request.firstName(),
                         link));
     }
 

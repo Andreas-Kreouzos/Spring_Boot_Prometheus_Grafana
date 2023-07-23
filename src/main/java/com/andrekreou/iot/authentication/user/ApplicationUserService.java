@@ -2,7 +2,6 @@ package com.andrekreou.iot.authentication.user;
 
 import com.andrekreou.iot.authentication.registration.token.ConfirmationToken;
 import com.andrekreou.iot.authentication.registration.token.ConfirmationTokenService;
-import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,7 +12,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
-@AllArgsConstructor
 public class ApplicationUserService implements UserDetailsService {
 
     private final static String USER_NOT_FOUND_MSG =
@@ -22,6 +20,15 @@ public class ApplicationUserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
+
+    public ApplicationUserService(
+            UserRepository userRepository,
+            BCryptPasswordEncoder bCryptPasswordEncoder,
+            ConfirmationTokenService confirmationTokenService) {
+        this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.confirmationTokenService = confirmationTokenService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email)

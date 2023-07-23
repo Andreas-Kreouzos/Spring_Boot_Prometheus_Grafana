@@ -1,7 +1,6 @@
 package com.andrekreou.iot.authentication.security;
 
 import com.andrekreou.iot.authentication.user.ApplicationUserService;
-import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,13 +12,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@AllArgsConstructor
 @EnableWebSecurity
 public class ApplicationSecurityConfig {
 
     private final ApplicationUserService applicationUserService;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public ApplicationSecurityConfig(
+            ApplicationUserService applicationUserService,
+            BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.applicationUserService = applicationUserService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

@@ -1,17 +1,8 @@
 package com.andrekreou.iot.authentication.registration;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
-
-@Getter
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
-public class RegistrationRequest {
-    private final String firstName;
-    private final String lastName;
-    private final String email;
-    private final String password;
+public record RegistrationRequest(
+        String firstName,
+        String lastName,
+        String email,
+        String password) {
 }
