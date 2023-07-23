@@ -11,17 +11,17 @@ The purpose of this project focuses on the captivation of possibilities provided
 Spring Framework and how these could be taken one step further by exposing endpoints and
 adding metrics to the famous platforms like Prometheus and Grafana.
 
-The aforementioned will be performed with the consumption of two external APIs which provide
-the data as JSON format, store these in a PostgreSQL database and finally expose them with the
+The aforementioned will be performed with the consumption of one external API which provide
+the data as JSON format, store these data in a PostgreSQL database and finally expose them with the
 necessary views in an HTML Thymeleaf template.
 
 The whole project will be constructed under the hood of Spring Security with Login authentication
 system as well as email verification procedure. The security aspect gets completed with the creation
-of a Self Signed Certificate to accomodate the usage of HTTPS protocol on 8443 port.
+of a Self Signed Certificate to accommodate the usage of HTTPS protocol on 8443 port.
 
 At the start of the application, the ```management.server.port``` will be also configured to run with
 the main application, on port 8080 with SSL disabled. This was done in order to expose the endpoints on
-HTTP protocol and manage to fetch these with the Promotheus more easily.
+HTTP protocol and manage to fetch these with the Prometheus more easily.
 
 Upon the Prometheus connection, Grafana will come also in the game by grabbing the metrics from Prometheus
 and creating some beautiful dashboards for the users to see and extract useful information.
@@ -40,6 +40,10 @@ and creating some beautiful dashboards for the users to see and extract useful i
 ## Application Map & Specifications
 ![35  MSc Thesis App Map](https://user-images.githubusercontent.com/77160233/197356806-ba9dbb4d-7bfa-40e8-a416-897d32adcde3.png)
 
+**Important Note:** The application used two external APIs, one for the cryptocurrency news and the other to fetch IMDb data about the best box
+office movies of all time. However, the IMDb removed the usage of it's free API service leading it's users to consume the paid one. For these
+reasons, it was necessary to be removed.
+
 1. Login system for registering users' data in database. The authentication includes, among other things, an Email Verification system in
 which an automated email message is sent to the address that has been declared, while the user must open it and press the activation
 link that will redirect him back to the application. This patch is hidden inside Spring Security.
@@ -50,7 +54,7 @@ endpoints of the application. This implementation was done using Spring Actuator
 3. For the creation of HTTPS there was a small challenge in which a Self Signed Certificate had to be built and parameters were then made
 in the application.properties file.
 
-4. Use and consumption of two external API's whose data is entered into the application with POJO-type Java classes in order to store them
+4. Use and consumption of one external API whose data is entered into the application with POJO-type Java classes in order to store them
 in databases through Repository classes and print them in Front End HTML pages. This process has been done with Thymeleaf while a minimal CSS
 has been added.
 

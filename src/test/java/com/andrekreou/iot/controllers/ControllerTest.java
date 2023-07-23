@@ -79,15 +79,6 @@ public class ControllerTest {
 
     @Test
     @WithMockUser(username="admin",roles={"USER","ADMIN"})
-    @DisplayName("Testing the Movies view of the application")
-    public void testMoviesPage() throws Exception{
-        mockMvc.perform(get("/show-movies-contents"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("movies-db-contents"));
-    }
-
-    @Test
-    @WithMockUser(username="admin",roles={"USER","ADMIN"})
     @DisplayName("Testing the Logout view of the application")
     public void testLogoutPage() throws Exception{
         mockMvc.perform(logout("/logout"));

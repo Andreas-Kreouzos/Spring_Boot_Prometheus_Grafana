@@ -1,7 +1,7 @@
-package com.andrekreou.iot.operations.crypto.configuration;
+package com.andrekreou.iot.crypto.configuration;
 
-import com.andrekreou.iot.operations.crypto.model.CryptoNews;
-import com.andrekreou.iot.operations.crypto.repository.CryptoNewsRepo;
+import com.andrekreou.iot.crypto.model.CryptoNews;
+import com.andrekreou.iot.crypto.repository.CryptoNewsRepo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;

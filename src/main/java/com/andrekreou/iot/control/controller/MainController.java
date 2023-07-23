@@ -44,18 +44,12 @@ public class MainController {
         return "login";
     }
 
+    @Timed(value = "show-all-rates.time", description = "Time taken to return Rates")
     @GetMapping("/show-news-contents")
     public String showAllRates(HttpServletRequest request){
         request.setAttribute("rates", mainService.showAllRates());
         hitCounter.increment();
         return "news-db-contents";
-    }
-
-    @Timed(value = "show-all-movies.time", description = "Time taken to return Movies")
-    @GetMapping("/show-movies-contents")
-    public String showAllMovies(HttpServletRequest request){
-        request.setAttribute("movies", mainService.showAllMovies());
-        return "movies-db-contents";
     }
 
     @GetMapping("/register")
