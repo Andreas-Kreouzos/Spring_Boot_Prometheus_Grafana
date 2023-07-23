@@ -3,10 +3,10 @@ package com.andrekreou.iot.service;
 import com.andrekreou.iot.control.service.MainService;
 import com.andrekreou.iot.crypto.model.CryptoNews;
 import com.andrekreou.iot.crypto.repository.CryptoNewsRepo;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -19,13 +19,17 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ServiceTest {
+public class MainServiceTest {
 
     @Mock
     CryptoNewsRepo cryptoNewsRepo;
 
-    @InjectMocks
-    MainService mainService;
+    MainService underTest;
+
+    @BeforeEach
+    void setUp() {
+        underTest = new MainService(cryptoNewsRepo);
+    }
 
     @Test
     @DisplayName("Saving one item of CryptoNews to the repository")
@@ -33,7 +37,7 @@ public class ServiceTest {
         CryptoNews saveCrypto = getCrypto();
         when(cryptoNewsRepo.save(any(CryptoNews.class))).thenReturn(saveCrypto);
 
-        CryptoNews actual = mainService.saveOneCryptoItem(new CryptoNews());
+        CryptoNews actual = underTest.saveOneCryptoItem(new CryptoNews());
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(saveCrypto);
     }
