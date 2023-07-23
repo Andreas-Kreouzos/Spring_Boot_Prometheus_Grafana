@@ -1,4 +1,4 @@
-package com.andrekreou.iot.control.exceptions;
+package com.andrekreou.iot.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

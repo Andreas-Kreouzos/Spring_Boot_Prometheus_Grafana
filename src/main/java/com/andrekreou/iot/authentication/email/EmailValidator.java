@@ -1,4 +1,4 @@
-package com.andrekreou.iot.authentication.registration;
+package com.andrekreou.iot.authentication.email;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.andrekreou.iot.control.exceptions;
+package com.andrekreou.iot.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;

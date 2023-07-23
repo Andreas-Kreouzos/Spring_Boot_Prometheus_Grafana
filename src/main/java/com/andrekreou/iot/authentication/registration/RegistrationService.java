@@ -1,5 +1,6 @@
 package com.andrekreou.iot.authentication.registration;
 
+import com.andrekreou.iot.authentication.email.EmailValidator;
 import com.andrekreou.iot.authentication.registration.token.ConfirmationToken;
 import com.andrekreou.iot.authentication.user.ApplicationUser;
 import com.andrekreou.iot.authentication.user.ApplicationUserService;
