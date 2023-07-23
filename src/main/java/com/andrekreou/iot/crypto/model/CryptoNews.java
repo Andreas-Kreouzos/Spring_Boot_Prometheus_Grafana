@@ -38,40 +38,20 @@ public class CryptoNews {
         return news_id;
     }
 
-    public void setNews_id(Integer news_id) {
-        this.news_id = news_id;
-    }
-
     public String getNews_provider_name() {
         return news_provider_name;
-    }
-
-    public void setNews_provider_name(String news_provider_name) {
-        this.news_provider_name = news_provider_name;
     }
 
     public String getHEADLINE() {
         return HEADLINE;
     }
 
-    public void setHEADLINE(String HEADLINE) {
-        this.HEADLINE = HEADLINE;
-    }
-
     public String getNews_link() {
         return news_link;
     }
 
-    public void setNews_link(String news_link) {
-        this.news_link = news_link;
-    }
-
     public String getRelated_image() {
         return related_image;
-    }
-
-    public void setRelated_image(String related_image) {
-        this.related_image = related_image;
     }
 
     @Override

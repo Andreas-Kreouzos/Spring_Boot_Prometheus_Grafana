@@ -39,7 +39,9 @@ public class ApplicationUserService implements UserDetailsService {
                                 String.format(USER_NOT_FOUND_MSG, email))));
     }
 
-    public String signUpUser(ApplicationUser applicationUser, ConfirmationToken confirmationToken) {
+    public String signUpUser(
+            ApplicationUser applicationUser,
+            ConfirmationToken confirmationToken) {
         boolean mailExists = doesMailExists(applicationUser);
         checkEmail(confirmationToken, mailExists);
         String encodedPassword = bCryptPasswordEncoder.encode(applicationUser.getPassword());
@@ -55,13 +57,13 @@ public class ApplicationUserService implements UserDetailsService {
         return userRepository.findByEmail(applicationUser.getEmail()).isPresent();
     }
 
-    private static void checkEmail(ConfirmationToken confirmationToken, boolean mailExists) {
+    private void checkEmail(ConfirmationToken confirmationToken, boolean mailExists) {
         if (mailExists && (confirmationToken.getConfirmedAt() != null)) {
             throw new IllegalStateException("email already taken");
         }
     }
 
-    private static ConfirmationToken getConfirmationToken(
+    private ConfirmationToken getConfirmationToken(
             ApplicationUser applicationUser,
             String token) {
         return new ConfirmationToken(
@@ -72,7 +74,7 @@ public class ApplicationUserService implements UserDetailsService {
         );
     }
 
-    public int enableApplicationUser(String email) {
-        return userRepository.enableAppUser(email);
+    public void enableApplicationUser(String email) {
+        userRepository.enableAppUser(email);
     }
 }
