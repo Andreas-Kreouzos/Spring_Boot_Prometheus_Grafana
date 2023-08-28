@@ -4,6 +4,9 @@ import com.andrekreou.iot.control.service.MainService;
 import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import jakarta.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
+@Tag(
+        name = "Main Controller",
+        description = "Main Controller Exposes REST APIs"
+)
 @Controller
 public class MainController {
 
@@ -27,6 +34,14 @@ public class MainController {
                 .register(meterRegistry);
     }
 
+    @Operation(
+            summary = "Main Screen REST API",
+            description = "Main Screen REST API is used to display the main screen after successful login"
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "HTTP Status 200 SUCCESS"
+    )
     @GetMapping("/")
     public String main(Model model, Principal principal){
         String name = principal.getName();
