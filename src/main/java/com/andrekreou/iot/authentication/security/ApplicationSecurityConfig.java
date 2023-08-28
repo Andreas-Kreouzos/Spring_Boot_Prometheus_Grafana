@@ -8,6 +8,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -27,35 +28,26 @@ public class ApplicationSecurityConfig {
     }
 
     @Bean
-    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .requiresChannel()
-                    .antMatchers("/actuator/**")
-                    .requiresInsecure()
-                .and()
-                .authorizeRequests()
-                    .antMatchers(
-                            "/api/v*/registration/**",
-                            "/register*",
-                            "/login",
-                            "/actuator/**").permitAll()
-                    .anyRequest()
-                    .authenticated()
-                    .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .usernameParameter("email")
-                    .permitAll()
-                    .defaultSuccessUrl("/",true)
-                    .failureUrl("/login-error")
-                .and()
-                .logout()
-                    .logoutUrl("/logout")
-                    .clearAuthentication(true)
-                    .invalidateHttpSession(true)
-                    .deleteCookies("JSESSIONID","Idea-2e8e7cee")
-                    .logoutSuccessUrl("/login");
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable);
+        http.requiresChannel(c -> c.requestMatchers("/actuator/**").requiresInsecure());
+        http.authorizeHttpRequests(request -> {
+            request.requestMatchers(
+                    "/api/v*/registration/**",
+                    "/register*",
+                    "/login",
+                    "/actuator/**").permitAll();
+            request.anyRequest().authenticated();
+        });
+        http.formLogin(login -> login.loginPage("/login")
+                .usernameParameter("email").permitAll()
+                .defaultSuccessUrl("/", true)
+                .failureUrl("/login-error"));
+        http.logout(logout -> logout.logoutUrl("/logout")
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID","Idea-2e8e7cee")
+                .logoutSuccessUrl("/login"));
 
         return http.build();
     }
