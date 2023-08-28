@@ -36,7 +36,11 @@ public class ApplicationSecurityConfig {
                     "/api/v*/registration/**",
                     "/register*",
                     "/login",
-                    "/actuator/**").permitAll();
+                    "/actuator/**",
+                    "/swagger-ui/**",
+                    "/v3/api-docs",
+                    "/webjars/**")
+                    .permitAll();
             request.anyRequest().authenticated();
         });
         http.formLogin(login -> login.loginPage("/login")
