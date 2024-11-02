@@ -1,8 +1,7 @@
 package com.andrekreou.iot.service;
 
-import com.andrekreou.iot.control.service.MainService;
-import com.andrekreou.iot.crypto.model.CryptoNews;
-import com.andrekreou.iot.crypto.repository.CryptoNewsRepo;
+import com.andrekreou.iot.entity.CryptoNews;
+import com.andrekreou.iot.repository.CryptoNewsRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

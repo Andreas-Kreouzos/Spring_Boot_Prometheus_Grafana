@@ -1,5 +1,6 @@
-package com.andrekreou.iot.controllers;
+package com.andrekreou.iot.controller;
 
+import com.andrekreou.iot.util.TestContainersConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ControllerTest {
+public class ControllerTest extends TestContainersConfig {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     @DisplayName("Testing the Login view of the application")
-    public void testLoginPage() throws Exception{
+    public void testLoginPage() throws Exception {
         mockMvc.perform(get("/login"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("login"));
@@ -29,7 +30,7 @@ public class ControllerTest {
 
     @Test
     @DisplayName("Testing the Register view of the application")
-    public void testRegisterPage() throws Exception{
+    public void testRegisterPage() throws Exception {
         mockMvc.perform(get("/register"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("register"));
@@ -37,7 +38,7 @@ public class ControllerTest {
 
     @Test
     @DisplayName("Testing the Registration Complete view of the application")
-    public void testRegisterCompletePage() throws Exception{
+    public void testRegisterCompletePage() throws Exception {
         mockMvc.perform(get("/registration-complete"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("http://localhost/login"));
@@ -45,42 +46,42 @@ public class ControllerTest {
 
     @Test
     @DisplayName("Testing the Verification Complete view of the application")
-    public void testVerificationCompletePage() throws Exception{
+    public void testVerificationCompletePage() throws Exception {
         mockMvc.perform(get("/verification-complete"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("http://localhost/login"));
     }
 
     @Test
-    @WithMockUser(username="admin",roles={"USER","ADMIN"})
+    @WithMockUser(username = "admin", roles = {"USER", "ADMIN"})
     @DisplayName("Testing the Welcome view of the application")
-    public void testWelcomePage() throws Exception{
+    public void testWelcomePage() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("welcome"));
     }
 
     @Test
-    @WithMockUser(username="admin",roles={"USER","ADMIN"})
+    @WithMockUser(username = "admin", roles = {"USER", "ADMIN"})
     @DisplayName("Testing the News view of the application")
-    public void testNewsPage() throws Exception{
+    public void testNewsPage() throws Exception {
         mockMvc.perform(get("/show-news-contents"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("news-db-contents"));
     }
 
     @Test
-    @WithMockUser(username="admin",roles={"USER","ADMIN"})
+    @WithMockUser(username = "admin", roles = {"USER", "ADMIN"})
     @DisplayName("Testing the Error URL from Spring Security")
-    public void testErrorPage() throws Exception{
+    public void testErrorPage() throws Exception {
         mockMvc.perform(get("/login-error"))
                 .andExpect(status().is4xxClientError());
     }
 
     @Test
-    @WithMockUser(username="admin",roles={"USER","ADMIN"})
+    @WithMockUser(username = "admin", roles = {"USER", "ADMIN"})
     @DisplayName("Testing the Logout view of the application")
-    public void testLogoutPage() throws Exception{
+    public void testLogoutPage() throws Exception {
         mockMvc.perform(logout("/logout"));
     }
 }
