@@ -1,6 +1,6 @@
-package com.andrekreou.iot.control.controller;
+package com.andrekreou.iot.controller;
 
-import com.andrekreou.iot.control.service.MainService;
+import com.andrekreou.iot.service.MainService;
 import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;

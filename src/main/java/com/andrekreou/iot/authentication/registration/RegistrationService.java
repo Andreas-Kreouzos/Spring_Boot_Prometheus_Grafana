@@ -7,7 +7,7 @@ import com.andrekreou.iot.authentication.user.ApplicationUserService;
 import com.andrekreou.iot.authentication.email.EmailSender;
 import com.andrekreou.iot.authentication.registration.token.ConfirmationTokenService;
 import com.andrekreou.iot.authentication.security.ApplicationUserRole;
-import com.andrekreou.iot.control.controller.MainController;
+import com.andrekreou.iot.controller.MainController;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,6 +1,6 @@
-package com.andrekreou.iot.crypto.repository;
+package com.andrekreou.iot.repository;
 
-import com.andrekreou.iot.crypto.model.CryptoNews;
+import com.andrekreou.iot.entity.CryptoNews;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

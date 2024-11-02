@@ -1,4 +1,4 @@
-package com.andrekreou.iot.crypto.model;
+package com.andrekreou.iot.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

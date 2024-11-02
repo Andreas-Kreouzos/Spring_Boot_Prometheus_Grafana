@@ -1,7 +1,7 @@
-package com.andrekreou.iot.crypto.configuration;
+package com.andrekreou.iot.configuration;
 
-import com.andrekreou.iot.crypto.model.CryptoNews;
-import com.andrekreou.iot.crypto.repository.CryptoNewsRepo;
+import com.andrekreou.iot.entity.CryptoNews;
+import com.andrekreou.iot.repository.CryptoNewsRepo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -35,6 +35,7 @@ public class CryptoNewsConfig {
             System.out.println(cryptoNewsList);
         };
     }
+
 
     private static HttpHeaders getHttpHeaders() {
         HttpHeaders headers = new HttpHeaders();
