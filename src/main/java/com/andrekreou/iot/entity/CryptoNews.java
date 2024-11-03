@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -35,17 +34,12 @@ public class CryptoNews {
     public CryptoNews() {
     }
 
-    public CryptoNews(
-            Integer newsId,
-            String newsProviderName,
-            String headline,
-            String newsLink,
-            String relatedImage) {
-        this.newsId = newsId;
-        this.newsProviderName = newsProviderName;
-        this.headline = headline;
-        this.newsLink = newsLink;
-        this.relatedImage = relatedImage;
+    public CryptoNews(Builder builder) {
+        this.newsId = builder.newsId;
+        this.newsProviderName = builder.newsProviderName;
+        this.headline = builder.headline;
+        this.newsLink = builder.newsLink;
+        this.relatedImage = builder.relatedImage;
     }
 
     public Integer getNewsId() {
@@ -68,31 +62,43 @@ public class CryptoNews {
         return relatedImage;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CryptoNews that = (CryptoNews) o;
-        return Objects.equals(newsId, that.newsId)
-                && Objects.equals(newsProviderName, that.newsProviderName)
-                && Objects.equals(headline, that.headline)
-                && Objects.equals(newsLink, that.newsLink)
-                && Objects.equals(relatedImage, that.relatedImage);
-    }
+    public static class Builder {
+        private Integer newsId;
+        private String newsProviderName;
+        private String headline;
+        private String newsLink;
+        private String relatedImage;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(newsId, newsProviderName, headline, newsLink, relatedImage);
-    }
+        public Builder() {
+        }
 
-    @Override
-    public String toString() {
-        return "CryptoNews{" +
-                "newsId=" + newsId +
-                ", newsProviderName='" + newsProviderName + '\'' +
-                ", HEADLINE='" + headline + '\'' +
-                ", news_link='" + newsLink + '\'' +
-                ", related_image='" + relatedImage + '\'' +
-                '}';
+        public Builder newsId(Integer newsId) {
+            this.newsId = newsId;
+            return this;
+        }
+
+        public Builder newsProviderName(String newsProviderName) {
+            this.newsProviderName = newsProviderName;
+            return this;
+        }
+
+        public Builder headline(String headline) {
+            this.headline = headline;
+            return this;
+        }
+
+        public Builder newsLink(String newsLink) {
+            this.newsLink = newsLink;
+            return this;
+        }
+
+        public Builder relatedImage(String relatedImage) {
+            this.relatedImage = relatedImage;
+            return this;
+        }
+
+        public CryptoNews build() {
+            return new CryptoNews(this);
+        }
     }
 }
