@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.util.Objects;
 
@@ -11,39 +13,47 @@ import java.util.Objects;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CryptoNews {
     @Id
-    private Integer news_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @JsonProperty("news_ID")
+    private Integer newsId;
+
     private String news_provider_name;
-    @JsonProperty("headline")
-    private String HEADLINE;
+
+    @JsonProperty("HEADLINE")
+    private String headline;
+
     private String news_link;
+
     private String related_image;
 
     public CryptoNews() {
     }
 
     public CryptoNews(
-            Integer news_id,
+            Integer newsId,
             String news_provider_name,
-            String HEADLINE,
+            String headline,
             String news_link,
             String related_image) {
-        this.news_id = news_id;
+        this.newsId = newsId;
         this.news_provider_name = news_provider_name;
-        this.HEADLINE = HEADLINE;
+        this.headline = headline;
         this.news_link = news_link;
         this.related_image = related_image;
     }
 
-    public Integer getNews_id() {
-        return news_id;
+    public Integer getNewsId() {
+        return newsId;
     }
 
     public String getNews_provider_name() {
         return news_provider_name;
     }
 
-    public String getHEADLINE() {
-        return HEADLINE;
+    public String getHeadline() {
+        return headline;
     }
 
     public String getNews_link() {
@@ -59,24 +69,24 @@ public class CryptoNews {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CryptoNews that = (CryptoNews) o;
-        return Objects.equals(news_id, that.news_id)
+        return Objects.equals(newsId, that.newsId)
                 && Objects.equals(news_provider_name, that.news_provider_name)
-                && Objects.equals(HEADLINE, that.HEADLINE)
+                && Objects.equals(headline, that.headline)
                 && Objects.equals(news_link, that.news_link)
                 && Objects.equals(related_image, that.related_image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(news_id, news_provider_name, HEADLINE, news_link, related_image);
+        return Objects.hash(newsId, news_provider_name, headline, news_link, related_image);
     }
 
     @Override
     public String toString() {
         return "CryptoNews{" +
-                "news_id=" + news_id +
+                "newsId=" + newsId +
                 ", news_provider_name='" + news_provider_name + '\'' +
-                ", HEADLINE='" + HEADLINE + '\'' +
+                ", HEADLINE='" + headline + '\'' +
                 ", news_link='" + news_link + '\'' +
                 ", related_image='" + related_image + '\'' +
                 '}';

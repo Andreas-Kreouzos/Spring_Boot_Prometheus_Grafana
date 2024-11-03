@@ -1,5 +1,6 @@
 package com.andrekreou.iot.service;
 
+import com.andrekreou.iot.CryptoClient;
 import com.andrekreou.iot.entity.CryptoNews;
 import com.andrekreou.iot.repository.CryptoNewsRepo;
 import io.micrometer.core.annotation.Timed;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,25 +15,21 @@ import java.util.List;
 public class MainService {
 
     private final CryptoNewsRepo cryptoNewsRepo;
+    private final CryptoClient cryptoClient;
 
     @Autowired
-    public MainService(CryptoNewsRepo cryptoNewsRepo) {
+    public MainService(CryptoNewsRepo cryptoNewsRepo, CryptoClient cryptoClient) {
         this.cryptoNewsRepo = cryptoNewsRepo;
+        this.cryptoClient = cryptoClient;
     }
 
     @Timed(value = "show.time", description = "Time taken to return showAllRates")
     public List<CryptoNews> showAllRates(){
-        return new ArrayList<>(cryptoNewsRepo.findAll());
+        return cryptoNewsRepo.findAll();
     }
 
-    public CryptoNews saveOneCryptoItem(CryptoNews cryptoNews){
-        CryptoNews saveCrypto = new CryptoNews(
-                cryptoNews.getNews_id(),
-                cryptoNews.getNews_provider_name(),
-                cryptoNews.getHEADLINE(),
-                cryptoNews.getNews_link(),
-                cryptoNews.getRelated_image()
-        );
-        return this.cryptoNewsRepo.save(saveCrypto);
+    public void persistCrypto() {
+        List<CryptoNews> cryptoNewsList = cryptoClient.fetchCryptoNews();
+        cryptoNewsRepo.saveAll(cryptoNewsList);
     }
 }

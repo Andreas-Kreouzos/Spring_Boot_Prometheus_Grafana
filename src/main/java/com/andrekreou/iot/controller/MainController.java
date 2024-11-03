@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
+
 import java.security.Principal;
 
 @Tag(
@@ -43,14 +44,14 @@ public class MainController {
             description = "HTTP Status 200 SUCCESS"
     )
     @GetMapping("/")
-    public String main(Model model, Principal principal){
+    public String main(Model model, Principal principal) {
         String name = principal.getName();
-        model.addAttribute("name",name);
+        model.addAttribute("name", name);
         return "welcome";
     }
 
     @GetMapping("/login-error")
-    public void getLoginErrorView(){
+    public void getLoginErrorView() {
         throw new UsernameNotFoundException("User with this email doesn't exist");
     }
 
@@ -61,24 +62,25 @@ public class MainController {
 
     @Timed(value = "show-all-rates.time", description = "Time taken to return Rates")
     @GetMapping("/show-news-contents")
-    public String showAllRates(HttpServletRequest request){
+    public String showAllRates(HttpServletRequest request) {
+        mainService.persistCrypto();
         request.setAttribute("rates", mainService.showAllRates());
         hitCounter.increment();
         return "news-db-contents";
     }
 
     @GetMapping("/register")
-    public String showRegistrationForm(){
+    public String showRegistrationForm() {
         return "register";
     }
 
     @GetMapping("/registration-complete")
-    public String showRegistrationCompleteForm(){
+    public String showRegistrationCompleteForm() {
         return "registration-complete";
     }
 
     @GetMapping("/verification-complete")
-    public String showVerificationCompleteForm(){
+    public String showVerificationCompleteForm() {
         return "verification-complete";
     }
 }
