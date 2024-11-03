@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CryptoNewsRepo extends JpaRepository<CryptoNews, Integer> {
+public interface CryptoRepository extends JpaRepository<CryptoNews, Integer> {
 
 }

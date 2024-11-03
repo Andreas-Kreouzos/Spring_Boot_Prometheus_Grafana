@@ -1,6 +1,6 @@
 package com.andrekreou.iot.controller;
 
-import com.andrekreou.iot.service.MainService;
+import com.andrekreou.iot.service.CryptoService;
 import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
@@ -22,14 +22,14 @@ import java.security.Principal;
         description = "Main Controller Exposes REST APIs"
 )
 @Controller
-public class MainController {
+public class CryptoController {
 
-    private final MainService mainService;
+    private final CryptoService cryptoService;
     private final Counter hitCounter;
 
     @Autowired
-    public MainController(MainService mainService, MeterRegistry meterRegistry) {
-        this.mainService = mainService;
+    public CryptoController(CryptoService cryptoService, MeterRegistry meterRegistry) {
+        this.cryptoService = cryptoService;
         this.hitCounter = Counter.builder("hit_counter")
                 .description("Number of Hits")
                 .register(meterRegistry);
@@ -63,8 +63,8 @@ public class MainController {
     @Timed(value = "show-all-rates.time", description = "Time taken to return Rates")
     @GetMapping("/show-news-contents")
     public String showAllRates(HttpServletRequest request) {
-        mainService.persistCrypto();
-        request.setAttribute("rates", mainService.showAllRates());
+        cryptoService.persistCrypto();
+        request.setAttribute("rates", cryptoService.showAllRates());
         hitCounter.increment();
         return "news-db-contents";
     }

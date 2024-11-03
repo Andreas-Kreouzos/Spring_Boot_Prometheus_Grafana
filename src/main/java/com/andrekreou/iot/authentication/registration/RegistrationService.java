@@ -7,7 +7,7 @@ import com.andrekreou.iot.authentication.user.ApplicationUserService;
 import com.andrekreou.iot.authentication.email.EmailSender;
 import com.andrekreou.iot.authentication.registration.token.ConfirmationTokenService;
 import com.andrekreou.iot.authentication.security.ApplicationUserRole;
-import com.andrekreou.iot.controller.MainController;
+import com.andrekreou.iot.controller.CryptoController;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,18 +20,18 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
-    private final MainController mainController;
+    private final CryptoController cryptoController;
 
     public RegistrationService(
             ApplicationUserService applicationUserService,
             EmailValidator emailValidator,
             ConfirmationTokenService confirmationTokenService,
-            EmailSender emailSender, MainController mainController) {
+            EmailSender emailSender, CryptoController cryptoController) {
         this.applicationUserService = applicationUserService;
         this.emailValidator = emailValidator;
         this.confirmationTokenService = confirmationTokenService;
         this.emailSender = emailSender;
-        this.mainController = mainController;
+        this.cryptoController = cryptoController;
     }
 
     public String register(RegistrationRequest request) {
@@ -41,7 +41,7 @@ public class RegistrationService {
         String token = getToken(request);
         String link = "https://localhost:8443/api/v1/registration/confirm?token=" + token;
         emailSend(request, link);
-        return mainController.showRegistrationCompleteForm();
+        return cryptoController.showRegistrationCompleteForm();
     }
 
     private String getToken(RegistrationRequest request) {
@@ -83,7 +83,7 @@ public class RegistrationService {
         confirmationTokenService.setConfirmedAt(token);
         applicationUserService.enableApplicationUser(
                 confirmationToken.getApplicationUser().getEmail());
-        return mainController.showVerificationCompleteForm();
+        return cryptoController.showVerificationCompleteForm();
     }
 
     private String buildEmail(String name, String link) {

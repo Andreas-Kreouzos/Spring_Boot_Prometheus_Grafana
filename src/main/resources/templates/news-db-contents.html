@@ -42,12 +42,12 @@
                 </thead>
                 <tbody>
                     <tr th:each="rate: ${rates}">
-                        <td> <img th:src="${rate.related_image}" alt="error displaying image"> </td>
-                        <td th:text="${rate.news_provider_name}"> </td>
+                        <td> <img th:src="${rate.relatedImage}" alt="error displaying image"> </td>
+                        <td th:text="${rate.newsProviderName}"> </td>
                         <td>
                             <a
                                     href="#"
-                                    th:href="@{${rate.news_link}}"
+                                    th:href="@{${rate.newsLink}}"
                                     th:text="${rate.headline}"
                                     target="_blank">
                             </a>

@@ -1,4 +1,4 @@
-package com.andrekreou.iot;
+package com.andrekreou.iot.client;
 
 import com.andrekreou.iot.entity.CryptoNews;
 import com.fasterxml.jackson.core.JsonProcessingException;

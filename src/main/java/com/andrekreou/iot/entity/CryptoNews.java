@@ -12,6 +12,7 @@ import java.util.Objects;
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CryptoNews {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,49 +20,52 @@ public class CryptoNews {
     @JsonProperty("news_ID")
     private Integer newsId;
 
-    private String news_provider_name;
+    @JsonProperty("news_provider_name")
+    private String newsProviderName;
 
     @JsonProperty("HEADLINE")
     private String headline;
 
-    private String news_link;
+    @JsonProperty("news_link")
+    private String newsLink;
 
-    private String related_image;
+    @JsonProperty("related_image")
+    private String relatedImage;
 
     public CryptoNews() {
     }
 
     public CryptoNews(
             Integer newsId,
-            String news_provider_name,
+            String newsProviderName,
             String headline,
-            String news_link,
-            String related_image) {
+            String newsLink,
+            String relatedImage) {
         this.newsId = newsId;
-        this.news_provider_name = news_provider_name;
+        this.newsProviderName = newsProviderName;
         this.headline = headline;
-        this.news_link = news_link;
-        this.related_image = related_image;
+        this.newsLink = newsLink;
+        this.relatedImage = relatedImage;
     }
 
     public Integer getNewsId() {
         return newsId;
     }
 
-    public String getNews_provider_name() {
-        return news_provider_name;
+    public String getNewsProviderName() {
+        return newsProviderName;
     }
 
     public String getHeadline() {
         return headline;
     }
 
-    public String getNews_link() {
-        return news_link;
+    public String getNewsLink() {
+        return newsLink;
     }
 
-    public String getRelated_image() {
-        return related_image;
+    public String getRelatedImage() {
+        return relatedImage;
     }
 
     @Override
@@ -70,25 +74,25 @@ public class CryptoNews {
         if (o == null || getClass() != o.getClass()) return false;
         CryptoNews that = (CryptoNews) o;
         return Objects.equals(newsId, that.newsId)
-                && Objects.equals(news_provider_name, that.news_provider_name)
+                && Objects.equals(newsProviderName, that.newsProviderName)
                 && Objects.equals(headline, that.headline)
-                && Objects.equals(news_link, that.news_link)
-                && Objects.equals(related_image, that.related_image);
+                && Objects.equals(newsLink, that.newsLink)
+                && Objects.equals(relatedImage, that.relatedImage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(newsId, news_provider_name, headline, news_link, related_image);
+        return Objects.hash(newsId, newsProviderName, headline, newsLink, relatedImage);
     }
 
     @Override
     public String toString() {
         return "CryptoNews{" +
                 "newsId=" + newsId +
-                ", news_provider_name='" + news_provider_name + '\'' +
+                ", newsProviderName='" + newsProviderName + '\'' +
                 ", HEADLINE='" + headline + '\'' +
-                ", news_link='" + news_link + '\'' +
-                ", related_image='" + related_image + '\'' +
+                ", news_link='" + newsLink + '\'' +
+                ", related_image='" + relatedImage + '\'' +
                 '}';
     }
 }

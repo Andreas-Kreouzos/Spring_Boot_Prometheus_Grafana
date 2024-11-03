@@ -1,8 +1,8 @@
 package com.andrekreou.iot.service;
 
-import com.andrekreou.iot.CryptoClient;
+import com.andrekreou.iot.client.CryptoClient;
 import com.andrekreou.iot.entity.CryptoNews;
-import com.andrekreou.iot.repository.CryptoNewsRepo;
+import com.andrekreou.iot.repository.CryptoRepository;
 import jakarta.persistence.PersistenceException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -22,16 +22,16 @@ import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class MainServiceTest {
+public class CryptoServiceTest {
 
     @Mock
-    private CryptoNewsRepo cryptoNewsRepo;
+    private CryptoRepository cryptoRepository;
 
     @Mock
     private CryptoClient cryptoClient;
 
     @InjectMocks
-    private MainService service;
+    private CryptoService service;
 
     private CryptoNews sampleCrypto;
 
@@ -56,7 +56,7 @@ public class MainServiceTest {
         verify(cryptoClient, times(1)).fetchCryptoNews();
 
         // and: the repository was called once with this list
-        verify(cryptoNewsRepo, times(1)).saveAll(cryptoNews);
+        verify(cryptoRepository, times(1)).saveAll(cryptoNews);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class MainServiceTest {
         assertEquals("Unexpected error", exception.getMessage());
 
         // and: no interactions with the repository are taking place
-        verifyNoInteractions(cryptoNewsRepo);
+        verifyNoInteractions(cryptoRepository);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class MainServiceTest {
         when(cryptoClient.fetchCryptoNews()).thenReturn(cryptoNews);
 
         // and: the repository could not persist
-        when(cryptoNewsRepo.saveAll(cryptoNews)).thenThrow(new PersistenceException("Could not persist"));
+        when(cryptoRepository.saveAll(cryptoNews)).thenThrow(new PersistenceException("Could not persist"));
 
         // when: calling the service
         RuntimeException exception = assertThrows(PersistenceException.class, () -> service.persistCrypto());
@@ -97,7 +97,7 @@ public class MainServiceTest {
         verify(cryptoClient, times(1)).fetchCryptoNews();
 
         // and: the repository was called once with this list
-        verify(cryptoNewsRepo, times(1)).saveAll(cryptoNews);
+        verify(cryptoRepository, times(1)).saveAll(cryptoNews);
     }
 
     private CryptoNews getCrypto() {
