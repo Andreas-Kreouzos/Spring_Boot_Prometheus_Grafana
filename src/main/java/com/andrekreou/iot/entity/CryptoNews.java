@@ -35,6 +35,7 @@ public class CryptoNews {
     }
 
     public CryptoNews(Builder builder) {
+        this.id = builder.id;
         this.newsId = builder.newsId;
         this.newsProviderName = builder.newsProviderName;
         this.headline = builder.headline;
@@ -63,6 +64,7 @@ public class CryptoNews {
     }
 
     public static class Builder {
+        private Long id;
         private Integer newsId;
         private String newsProviderName;
         private String headline;
@@ -70,6 +72,11 @@ public class CryptoNews {
         private String relatedImage;
 
         public Builder() {
+        }
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
         }
 
         public Builder newsId(Integer newsId) {
