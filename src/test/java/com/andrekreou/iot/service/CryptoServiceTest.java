@@ -102,11 +102,11 @@ public class CryptoServiceTest {
 
     private CryptoNews getCrypto() {
         return new CryptoNews.Builder()
-                .newsId(1)
-                .newsProviderName("CoinEdition")
-                .headline("Crypto Finds Severe Falls in 2022; Analyses Crypto IRL")
-                .newsLink("https://www.investing.com/news/cryptocurrency-news/crypto-finds-severe-falls-in-2022-analyses-crypto-irl-2904122")
-                .relatedImage("https://i-invdn-com.investing.com/news/Cryptocurrencies_150x108_S_1556527948.jpg")
+                .withNewsId(1)
+                .withNewsProviderName("CoinEdition")
+                .withHeadline("Crypto Finds Severe Falls in 2022; Analyses Crypto IRL")
+                .withNewsLink("https://www.investing.com/news/cryptocurrency-news/crypto-finds-severe-falls-in-2022-analyses-crypto-irl-2904122")
+                .withRelatedImage("https://i-invdn-com.investing.com/news/Cryptocurrencies_150x108_S_1556527948.jpg")
                 .build();
     }
 }

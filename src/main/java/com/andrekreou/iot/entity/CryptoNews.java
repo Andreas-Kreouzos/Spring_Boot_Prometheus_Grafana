@@ -43,24 +43,109 @@ public class CryptoNews {
         this.relatedImage = builder.relatedImage;
     }
 
+    /**
+     * @return The id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of id
+     *
+     * @param id The new value to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return The newsId
+     */
     public Integer getNewsId() {
         return newsId;
     }
 
+    /**
+     * Sets the value of newsId
+     *
+     * @param newsId The new value to set
+     */
+    public void setNewsId(Integer newsId) {
+        this.newsId = newsId;
+    }
+
+    /**
+     * @return The newsProviderName
+     */
     public String getNewsProviderName() {
         return newsProviderName;
     }
 
+    /**
+     * Sets the value of newsProviderName
+     *
+     * @param newsProviderName The new value to set
+     */
+    public void setNewsProviderName(String newsProviderName) {
+        this.newsProviderName = newsProviderName;
+    }
+
+    /**
+     * @return The headline
+     */
     public String getHeadline() {
         return headline;
     }
 
+    /**
+     * Sets the value of headline
+     *
+     * @param headline The new value to set
+     */
+    public void setHeadline(String headline) {
+        this.headline = headline;
+    }
+
+    /**
+     * @return The newsLink
+     */
     public String getNewsLink() {
         return newsLink;
     }
 
+    /**
+     * Sets the value of newsLink
+     *
+     * @param newsLink The new value to set
+     */
+    public void setNewsLink(String newsLink) {
+        this.newsLink = newsLink;
+    }
+
+    /**
+     * @return The relatedImage
+     */
     public String getRelatedImage() {
         return relatedImage;
+    }
+
+    /**
+     * Sets the value of relatedImage
+     *
+     * @param relatedImage The new value to set
+     */
+    public void setRelatedImage(String relatedImage) {
+        this.relatedImage = relatedImage;
+    }
+
+    /**
+     * Creates a new Builder instance.
+     *
+     * @return the created Builder instance.
+     */
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder {
@@ -74,38 +159,50 @@ public class CryptoNews {
         public Builder() {
         }
 
-        public Builder id(Long id) {
+        public Builder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public Builder newsId(Integer newsId) {
+        public Builder withNewsId(Integer newsId) {
             this.newsId = newsId;
             return this;
         }
 
-        public Builder newsProviderName(String newsProviderName) {
+        public Builder withNewsProviderName(String newsProviderName) {
             this.newsProviderName = newsProviderName;
             return this;
         }
 
-        public Builder headline(String headline) {
+        public Builder withHeadline(String headline) {
             this.headline = headline;
             return this;
         }
 
-        public Builder newsLink(String newsLink) {
+        public Builder withNewsLink(String newsLink) {
             this.newsLink = newsLink;
             return this;
         }
 
-        public Builder relatedImage(String relatedImage) {
+        public Builder withRelatedImage(String relatedImage) {
             this.relatedImage = relatedImage;
             return this;
         }
 
+        /**
+         * Builds the audit record instance.
+         *
+         * @return the newly built audit record instance.
+         */
         public CryptoNews build() {
-            return new CryptoNews(this);
+            CryptoNews cryptoNews = new CryptoNews();
+            cryptoNews.setId(id);
+            cryptoNews.setNewsId(newsId);
+            cryptoNews.setNewsProviderName(newsProviderName);
+            cryptoNews.setHeadline(headline);
+            cryptoNews.setNewsLink(newsLink);
+            cryptoNews.setRelatedImage(relatedImage);
+            return cryptoNews;
         }
     }
 }

@@ -15,10 +15,9 @@ public class CryptoClient {
     private final RestClient restClient;
     private final ObjectMapper mapper;
 
-    public CryptoClient(ObjectMapper mapper) {
+    public CryptoClient(RestClient.Builder restClientBuilder, ObjectMapper mapper) {
         this.mapper = mapper;
-        this.restClient = RestClient.builder()
-                .baseUrl("https://investing-cryptocurrency-markets.p.rapidapi.com")
+        this.restClient = restClientBuilder.baseUrl("https://investing-cryptocurrency-markets.p.rapidapi.com")
                 .defaultHeader("X-RapidAPI-Key", "605a619252msh709d3d6fa6fbdcdp155ef4jsn6cd36a1a4195")
                 .defaultHeader("X-RapidAPI-Host", "investing-cryptocurrency-markets.p.rapidapi.com")
                 .build();
