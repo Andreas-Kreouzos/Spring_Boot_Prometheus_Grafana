@@ -5,6 +5,7 @@ import com.andrekreou.iot.entity.CryptoNews;
 import com.andrekreou.iot.repository.CryptoRepository;
 import com.andrekreou.iot.util.TestFixtures;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,11 @@ public class CryptoClientTest {
     void setup() {
         mockServer = MockRestServiceServer.bindTo(restClientBuilder).build();
         cryptoClient = new CryptoClient(restClientBuilder, mapper);
+    }
+
+    @AfterEach
+    void teardown() {
+        mockServer.reset();
     }
 
     @Test
